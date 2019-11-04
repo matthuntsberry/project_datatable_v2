@@ -1,0 +1,23 @@
+.landing-page {
+  height: calc(100vh - 48px);
+  background-color: #f4f4f4;
+}
+
+.landing-page__r1 {
+  display: block;
+}
+
+.landing-page__r2 {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  margin: 0;
+  background-color: #fff;
+
+  @include medium {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.landing-page__r3 {
+  padding-bottom: 32px;
+}

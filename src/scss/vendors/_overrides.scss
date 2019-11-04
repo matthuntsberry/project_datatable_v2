@@ -1,0 +1,32 @@
+// Removing unwanted padding on the main div
+.bx--content {
+  padding: 0;
+}
+
+.bx--search-input {
+  border-bottom: 0;
+}
+
+.bx--data-table-container {
+  padding-top: 0;
+  height: 490px;
+}
+
+.bx--pagination {
+  background-color: #fff;
+}
+
+.pagination--sticky {
+  width: 100%;
+  position: fixed;
+  bottom: 4px;
+  left: 0;
+
+  // @include medium {
+  //   width: calc(100% - 48px);
+  // }
+
+  // @include large {
+  //   width: 100%;
+  // }
+}
