@@ -46,6 +46,7 @@ const FilterPage = () => {
             scrollable
             sticky
           />
+          <Filter />
         </div>
         <Pagination
           className="pagination--sticky"

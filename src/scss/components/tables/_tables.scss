@@ -20,6 +20,7 @@
   width: 200px;
   height: 50px;
   overflow-y: auto;
+  border-bottom: 0;
 
   @include large {
     width: auto;
@@ -39,7 +40,8 @@
 }
 
 th.sticky.cell {
-  outline: 1px solid #dcdcdc;
+  // outline: 1px solid #dcdcdc;
+  box-shadow: 1px 1px 1px #dfdfdf;
 }
 
 .table__row .cell {
