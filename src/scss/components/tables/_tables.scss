@@ -15,22 +15,22 @@
 
 .data-table .sticky:nth-of-type(1) {
   position: sticky;
+  z-index: 0;
   top: auto;
   left: 0;
   width: 200px;
   height: 49px;
+  overflow-y: auto;
   border-right: 1px solid #dcdcdc;
   border-bottom: 1px solid #dcdcdc;
-  overflow-y: auto;
-  z-index: 0;
 }
 
 .table__header-row {
-  white-space: nowrap;
   position: sticky;
-  left: 0;
-  top: 0;
   z-index: 1;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
 }
 
 td {
