@@ -8,11 +8,11 @@
 }
 
 .bx--data-table-container {
+  height: 300px;
   padding-top: 0;
-  height: 400px;
 
   @include medium {
-    height: auto;
+    height: 490px;
   }
 }
 
@@ -21,10 +21,10 @@
 }
 
 .pagination--sticky {
-  width: 100%;
   position: fixed;
-  bottom: 4px;
+  bottom: 0;
   left: 0;
+  width: 100%;
 
   // @include medium {
   //   width: calc(100% - 48px);
