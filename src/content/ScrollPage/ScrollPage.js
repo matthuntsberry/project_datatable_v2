@@ -6,8 +6,6 @@ import { gql } from "apollo-boost";
 import { Query } from "react-apollo";
 import PageHeader from "../../components/PageHeader";
 
-import db from "../../db/db";
-
 const headers = [
   {
     key: "name",

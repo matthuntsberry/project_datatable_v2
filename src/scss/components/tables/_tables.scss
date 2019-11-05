@@ -8,7 +8,6 @@
 }
 
 .scrollable--sticky {
-  // padding-left: 200px;
   overflow-x: scroll;
   overflow-y: auto;
 }
@@ -21,9 +20,10 @@
   width: 200px;
   height: 50px;
   overflow-y: auto;
-  border-top: 1px solid #dcdcdc;
-  border-right: 1px solid #dcdcdc;
-  border-bottom: 1px solid #dcdcdc;
+
+  @include large {
+    width: auto;
+  }
 }
 
 .table__header-row {
@@ -35,8 +35,11 @@
 }
 
 .sticky.cell {
-  height: 50px;
   white-space: nowrap;
+}
+
+th.sticky.cell {
+  outline: 1px solid #dcdcdc;
 }
 
 .table__row .cell {
@@ -46,4 +49,5 @@
 .sticky.cell:last-child {
   padding: 0;
   justify-items: end;
+  width: 50px;
 }

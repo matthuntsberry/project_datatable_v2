@@ -30,6 +30,11 @@ const ActionPageComponent = Loadable({
   loading
 });
 
+const FilterPageComponent = Loadable({
+  loader: () => import("../content/FilterPage"),
+  loading
+});
+
 function App() {
   return (
     <div className="app__container">
@@ -41,6 +46,7 @@ function App() {
           <Route path="/scroll" component={ScrollPageComponent} />
           <Route path="/sticky" component={StickyPageComponent} />
           <Route path="/action" component={ActionPageComponent} />
+          <Route path="/filter" component={FilterPageComponent} />
         </Switch>
       </Content>
     </div>

@@ -8,12 +8,12 @@
 }
 
 .bx--data-table-container {
-  height: 490px;
+  height: 400px;
   padding-top: 0;
 
-  // @include medium {
-  //   height: 490px;
-  // }
+  @include medium {
+    height: 490px;
+  }
 }
 
 .bx--pagination {
