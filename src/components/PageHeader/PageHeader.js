@@ -4,10 +4,13 @@ import { Button } from "carbon-components-react";
 const PageHeader = ({ title }) => {
   return (
     <div className="page-header__container">
-      <h1 className="page-header">{title}</h1>
+      <h1 role="heading" className="page-header">
+        {title}
+      </h1>
       <Button className="bx--btn bx--btn--primary" type="button">
         Create
         <svg
+          role="img"
           focusable="false"
           preserveAspectRatio="xMidYMid meet"
           // style="will-change: transform;"

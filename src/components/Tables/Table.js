@@ -8,14 +8,14 @@ const Table = ({ rows, headers, scrollable, sticky }) => {
   };
 
   const theadMarkup = (
-    <tr className="table__header-row">
+    <tr role="row" className="table__header-row">
       {headers.map(({ header }, i) => renderHeadingRow(header, i))}
     </tr>
   );
 
   const renderRow = (row, key) => {
     return (
-      <tr className="table__row" key={key}>
+      <tr role="row" className="table__row" key={key}>
         <Cell content={row} sticky={sticky} />
       </tr>
     );
@@ -32,9 +32,13 @@ const Table = ({ rows, headers, scrollable, sticky }) => {
     <div className="table__wrapper">
       <div className={tableStyles}>
         <div className="bx--data-table-container data-table">
-          <table className="bx--data-table bx--data-table--no-border">
-            <thead>{theadMarkup}</thead>
-            <tbody>{tbodyMarkup}</tbody>
+          <table
+            role="table"
+            summary="A list of resources listed on your ibm cloud account"
+            className="bx--data-table bx--data-table--no-border"
+          >
+            <thead role="rowgroup">{theadMarkup}</thead>
+            <tbody role="rowgroup">{tbodyMarkup}</tbody>
           </table>
         </div>
       </div>
