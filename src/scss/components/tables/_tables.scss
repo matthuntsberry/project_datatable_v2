@@ -22,10 +22,15 @@
   border-right: 1px solid #dcdcdc;
   border-bottom: 1px solid #dcdcdc;
   overflow-y: auto;
+  z-index: 0;
 }
 
 .table__header-row {
   white-space: nowrap;
+  position: sticky;
+  left: 0;
+  top: 0;
+  z-index: 1;
 }
 
 td {

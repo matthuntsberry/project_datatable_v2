@@ -9,7 +9,11 @@
 
 .bx--data-table-container {
   padding-top: 0;
-  height: 490px;
+  height: 400px;
+
+  @include medium {
+    height: auto;
+  }
 }
 
 .bx--pagination {
@@ -29,4 +33,10 @@
   // @include large {
   //   width: 100%;
   // }
+}
+
+.bx--data-table-header {
+  position: fixed;
+  top: 0;
+  left: 0;
 }
