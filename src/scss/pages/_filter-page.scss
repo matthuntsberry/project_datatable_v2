@@ -1,0 +1,23 @@
+.filter-page {
+  padding: 0 16px;
+  background-color: #f4f4f4;
+  height: 100%;
+
+  @include medium {
+    padding: 0 32px;
+  }
+}
+
+.table-component__container {
+  margin: 0;
+  background-color: #fff;
+
+  @include medium {
+    grid-template-columns: 1fr 256px;
+  }
+}
+
+.table__container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
