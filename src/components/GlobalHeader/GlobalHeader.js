@@ -21,9 +21,7 @@ const GlobalHeader = () => (
       Cloud
     </HeaderName>
     <HeaderNavigation aria-label="Carbon Tutorial">
-      <HeaderMenuItem href="/">Basic</HeaderMenuItem>
-      <HeaderMenuItem href="/scroll">Scroll</HeaderMenuItem>
-      <HeaderMenuItem href="/sticky">Sticky</HeaderMenuItem>
+      <HeaderMenuItem href="/">Sticky</HeaderMenuItem>
       <HeaderMenuItem href="/action">Action</HeaderMenuItem>
       <HeaderMenuItem href="/filter">Filter</HeaderMenuItem>
     </HeaderNavigation>
