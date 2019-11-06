@@ -4,7 +4,6 @@ import { Button, Search, Pagination } from "carbon-components-react";
 import { Renew16, SettingsAdjust16, Settings16 } from "@carbon/icons-react";
 
 import PageHeader from "../../components/PageHeader";
-import Filter from "../../components/Filter";
 import db from "../../db/db";
 
 const FilterPage = () => {
@@ -46,7 +45,6 @@ const FilterPage = () => {
             scrollable
             sticky
           />
-          <Filter />
         </div>
         <Pagination
           className="pagination--sticky"
