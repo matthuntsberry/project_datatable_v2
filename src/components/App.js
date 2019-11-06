@@ -10,16 +10,6 @@ function loading() {
   return <h3>Loading....</h3>;
 }
 
-const LandingPageComponent = Loadable({
-  loader: () => import("../content/LandingPage"),
-  loading
-});
-
-const ScrollPageComponent = Loadable({
-  loader: () => import("../content/ScrollPage"),
-  loading
-});
-
 const StickyPageComponent = Loadable({
   loader: () => import("../content/StickyPage"),
   loading
@@ -30,6 +20,11 @@ const ActionPageComponent = Loadable({
   loading
 });
 
+const FilterPageComponent = Loadable({
+  loader: () => import("../content/FilterPage"),
+  loading
+});
+
 function App() {
   return (
     <div className="app__container">
@@ -37,10 +32,9 @@ function App() {
       <Sidebar />
       <Content className="content">
         <Switch>
-          <Route exact path="/" component={LandingPageComponent} />
-          <Route path="/scroll" component={ScrollPageComponent} />
-          <Route path="/sticky" component={StickyPageComponent} />
+          <Route exact path="/" component={StickyPageComponent} />
           <Route path="/action" component={ActionPageComponent} />
+          <Route path="/filter" component={FilterPageComponent} />
         </Switch>
       </Content>
     </div>

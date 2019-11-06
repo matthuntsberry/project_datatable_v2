@@ -8,7 +8,6 @@
 }
 
 .scrollable--sticky {
-  // padding-left: 200px;
   overflow-x: scroll;
   overflow-y: auto;
 }
@@ -21,9 +20,11 @@
   width: 200px;
   height: 50px;
   overflow-y: auto;
-  border-top: 1px solid #dcdcdc;
-  border-right: 1px solid #dcdcdc;
-  border-bottom: 1px solid #dcdcdc;
+  border-bottom: 0;
+
+  @include large {
+    width: auto;
+  }
 }
 
 .table__header-row {
@@ -35,8 +36,11 @@
 }
 
 .sticky.cell {
-  height: 50px;
   white-space: nowrap;
+}
+
+th.sticky.cell {
+  box-shadow: 1px -1px 1px #dcdcdc;
 }
 
 .table__row .cell {
@@ -44,6 +48,7 @@
 }
 
 .sticky.cell:last-child {
+  width: 50px;
   padding: 0;
   justify-items: end;
 }

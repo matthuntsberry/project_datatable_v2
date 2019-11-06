@@ -4,11 +4,13 @@ import { Button, Search, Pagination } from "carbon-components-react";
 import { Renew16, SettingsAdjust16, Settings16 } from "@carbon/icons-react";
 
 import PageHeader from "../../components/PageHeader";
+import Filter from "../../components/Filter";
 import db from "../../db/db";
 
-const StickyPage = () => {
+const FilterPage = () => {
   let { headers, rows } = db;
-  const [totalItems] = useState(10);
+
+  const [totalItems] = useState(20);
   const [firstRowIndex, setFirstRowIndex] = useState(0);
   const [currentPageSize, setCurrentPageSize] = useState(10);
 
@@ -16,7 +18,7 @@ const StickyPage = () => {
     <div className="bx--grid bx--grid--full-width landing-page">
       <div className="bx--row landing-page__r1">
         <div className="bx--col-lg-16">
-          <PageHeader title="Sticky" />
+          <PageHeader title="Filter" />
         </div>
       </div>
       <div className="bx--row landing-page__r2">
@@ -44,6 +46,7 @@ const StickyPage = () => {
             scrollable
             sticky
           />
+          <Filter />
         </div>
         <Pagination
           className="pagination--sticky"
@@ -65,4 +68,4 @@ const StickyPage = () => {
   );
 };
 
-export default StickyPage;
+export default FilterPage;

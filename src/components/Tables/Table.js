@@ -37,8 +37,8 @@ const Table = ({ rows, headers, scrollable, sticky }) => {
             summary="A list of resources listed on your ibm cloud account"
             className="bx--data-table bx--data-table--no-border"
           >
-            <thead role="rowgroup">{theadMarkup}</thead>
-            <tbody role="rowgroup">{tbodyMarkup}</tbody>
+            <thead>{theadMarkup}</thead>
+            <tbody>{tbodyMarkup}</tbody>
           </table>
         </div>
       </div>
