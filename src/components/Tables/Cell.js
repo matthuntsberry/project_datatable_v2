@@ -5,7 +5,7 @@ const Cell = ({ content, header, sticky, headerIndex }) => {
     <>
       {/* If first column in data table give it these classes */}
       {headerIndex === 0 ? (
-        <th role="columnheader" className={sticky && "sticky cell"} scope="col">
+        <th role="columnheader" className={sticky && "sticky"} scope="col">
           <span role="heading" className="bx--table-header-label">
             {content}
           </span>
@@ -25,11 +25,7 @@ const Cell = ({ content, header, sticky, headerIndex }) => {
         <>
           {/* If first column in data table give it these classes */}
           {i === 0 ? (
-            <th
-              role="rowheader"
-              className={sticky && "sticky cell row__header"}
-              scope="row"
-            >
+            <th role="rowheader" className={sticky && "sticky"} scope="row">
               {value}
             </th>
           ) : (

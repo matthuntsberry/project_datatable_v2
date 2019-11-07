@@ -32,23 +32,21 @@ const Table = ({ rows, headers, scrollable, sticky, toggle }) => {
   const tbodyMarkup = rows.map((row, i) => renderRow(row, i));
 
   const tableStyles = classNames({
-    "table--scroll-x": scrollable
-    // "scrollable--sticky": scrollable && sticky
+    "table--scroll-x": scrollable,
+    "table--sticky": scrollable && sticky
   });
 
   return (
     <div className="table__wrapper">
       <div className={tableStyles}>
-        <div className="data-table">
-          <table
-            role="table"
-            summary="A list of resources listed on your ibm cloud account"
-            className="bx--data-table bx--data-table--no-border"
-          >
-            <thead>{theadMarkup}</thead>
-            <tbody>{tbodyMarkup}</tbody>
-          </table>
-        </div>
+        <table
+          role="table"
+          summary="A list of resources listed on your ibm cloud account"
+          className="bx--data-table bx--data-table--no-border data-table"
+        >
+          <thead>{theadMarkup}</thead>
+          <tbody>{tbodyMarkup}</tbody>
+        </table>
       </div>
       {toggle && <SideFilter toggle={toggle} />}
     </div>

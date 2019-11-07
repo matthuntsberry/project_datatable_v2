@@ -1,11 +1,10 @@
 .table-wrapper {
+  position: relative;
 }
 
-.table--scroll-x {
+.table--scroll-x,
+.table--sticky {
   overflow-x: scroll;
-}
-
-.data-table {
 }
 
 .cell {
@@ -15,7 +14,9 @@
 // This is to fix a weird bug in FF to
 // show a bottom border for the table th
 .row__header {
-  transform: scale(0.9);
+  @include medium {
+    transform: scale(0.9);
+  }
 }
 
 .cell:last-child {
@@ -24,6 +25,13 @@
   justify-items: end;
 }
 
+th.sticky:first-child {
+  @include medium {
+    position: sticky;
+    z-index: 2;
+    left: 0;
+  }
+}
 // .sticky {
 //   border: 1px solid black;
 // }
