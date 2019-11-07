@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Table from "../../components/Tables";
-import { Pagination } from "carbon-components-react";
+// import { Pagination } from "carbon-components-react";
 
-import PageHeader from "../../components/PageHeader";
+// import PageHeader from "../../components/PageHeader";
 import db from "../../db/db";
 import TableToolBar from "../../components/TableToolBar";
 
