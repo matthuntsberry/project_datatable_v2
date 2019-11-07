@@ -4,13 +4,20 @@ import classNames from "classnames";
 import SideFilter from "../../components/SideFilter";
 
 const Table = ({ rows, headers, scrollable, sticky, toggle }) => {
-  const renderHeadingRow = (header, key) => {
-    return <Cell content={header} header={true} sticky={sticky} key={key} />;
+  const renderHeadingRow = (header, headerIndex) => {
+    return (
+      <Cell
+        content={header}
+        header={true}
+        sticky={sticky}
+        headerIndex={headerIndex}
+      />
+    );
   };
 
   const theadMarkup = (
     <tr role="row" className="table__header-row">
-      {headers.map(({ header }, i) => renderHeadingRow(header, i))}
+      {headers.map(({ header }, index) => renderHeadingRow(header, index))}
     </tr>
   );
 

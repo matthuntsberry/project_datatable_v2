@@ -10,6 +10,10 @@ th {
   white-space: nowrap;
 }
 
+.sticky.cell {
+  height: 50px;
+}
+
 // .table__wrapper {
 //   display: grid;
 //   position: relative;
@@ -63,8 +67,8 @@ th {
 //   background-color: #fff;
 // }
 
-// .sticky.cell:last-child {
-//   width: 50px;
-//   padding: 0;
-//   justify-items: end;
-// }
+.cell:last-child {
+  width: 50px;
+  padding: 0;
+  justify-items: end;
+}
