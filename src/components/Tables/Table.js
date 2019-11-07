@@ -32,7 +32,7 @@ const Table = ({ rows, headers, scrollable, sticky, toggle }) => {
   return (
     <div className="table__wrapper">
       <div className={tableStyles}>
-        <div className="bx--data-table-container data-table">
+        <div className="data-table">
           <table
             role="table"
             summary="A list of resources listed on your ibm cloud account"
