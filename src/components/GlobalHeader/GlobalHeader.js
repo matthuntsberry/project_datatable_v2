@@ -24,6 +24,7 @@ const GlobalHeader = () => (
       <HeaderMenuItem href="/">Sticky</HeaderMenuItem>
       <HeaderMenuItem href="/action">Action</HeaderMenuItem>
       <HeaderMenuItem href="/filter">Filter</HeaderMenuItem>
+      <HeaderMenuItem href="/test">Test</HeaderMenuItem>
     </HeaderNavigation>
     <HeaderGlobalBar>
       <HeaderGlobalAction aria-label="Notifications">

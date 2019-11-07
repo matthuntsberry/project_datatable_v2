@@ -25,6 +25,11 @@ const FilterPageComponent = Loadable({
   loading
 });
 
+const TestPageComponent = Loadable({
+  loader: () => import("../content/TestPage"),
+  loading
+});
+
 function App() {
   return (
     <div className="app__container">
@@ -35,6 +40,7 @@ function App() {
           <Route exact path="/" component={StickyPageComponent} />
           <Route path="/action" component={ActionPageComponent} />
           <Route path="/filter" component={FilterPageComponent} />
+          <Route path="/test" component={TestPageComponent} />
         </Switch>
       </Content>
     </div>
