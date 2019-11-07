@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import Table from "../../components/Tables";
 import { Button, Search, Pagination } from "carbon-components-react";
 import { Renew16, SettingsAdjust16, Settings16 } from "@carbon/icons-react";
 
+import Table from "../../components/Tables";
+import TableToolBar from "../../components/TableToolBar";
 import PageHeader from "../../components/PageHeader";
 import db from "../../db/db";
-
-import "./_test-page.scss";
 
 const FilterPage = () => {
   let { headers, rows } = db;
@@ -17,14 +16,15 @@ const FilterPage = () => {
 
   return (
     <div className="test-page">
-      <div className="bx--row test-page__r1">
-        <div className="bx--col-lg-16">
+      <div className="">
+        <div className="">
           <PageHeader title="Test" />
         </div>
       </div>
 
-      <div className="bx--row test-page__r3">
-        <div className="bx--col-lg-16">
+      <div className="table-component__container">
+        <TableToolBar />
+        <div className="">
           <Table
             headers={headers}
             rows={rows.slice(firstRowIndex, firstRowIndex + currentPageSize)}
