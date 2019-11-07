@@ -2,7 +2,7 @@
   display: grid;
   position: relative;
   grid-template-columns: 1fr auto;
-  // height: 300px;
+  height: 300px;
 }
 
 .table--scroll-x,
@@ -12,8 +12,12 @@
 
 .table__header-row {
   position: sticky;
-  top: 0;
   z-index: 3;
+  top: 0;
+}
+
+td {
+  background-color: #fff;
 }
 
 .cell {

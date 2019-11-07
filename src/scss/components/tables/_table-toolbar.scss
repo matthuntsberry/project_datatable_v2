@@ -5,6 +5,6 @@
   background-color: #fff;
 
   @include medium {
-    grid-template-columns: 1fr 256px;
+    grid-template-columns: 1fr auto;
   }
 }

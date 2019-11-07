@@ -9,7 +9,7 @@ const Filter = ({ toggle }) => {
   });
   return (
     <div className={filterStyles}>
-      <h1>Hiya</h1>
+      <h1>Boo!</h1>
     </div>
   );
 };

@@ -17,9 +17,8 @@
 @import "../scss/vendors/overrides";
 
 // pages related styles
-@import "./pages/landing-page";
-@import "./pages/filter-page";
 @import "./pages/app";
+@import "../content/DetailsPage/details-page";
 
 // component related styles
 @import "../scss/components/buttons/buttons";
@@ -27,5 +26,4 @@
 @import "../scss/components/tables/table-toolbar";
 @import "../scss/components/filters/side-filter";
 @import "../components/PageHeader/page-header";
-@import "../content/TestPage/test-page";
 @import "../components/Sidebar/sidebar";

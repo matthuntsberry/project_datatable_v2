@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Button, Search, Pagination } from "carbon-components-react";
-import { Renew16, SettingsAdjust16, Settings16 } from "@carbon/icons-react";
+import { Pagination } from "carbon-components-react";
 
 import Table from "../../components/Tables";
 import TableToolBar from "../../components/TableToolBar";
@@ -16,10 +15,10 @@ const FilterPage = () => {
   const [toggled, setToggle] = useState(false);
 
   return (
-    <div className="test-page">
+    <div className="details-page">
       <div className="">
         <div className="">
-          <PageHeader title="Test" />
+          <PageHeader title="Details" />
         </div>
       </div>
 
@@ -35,7 +34,7 @@ const FilterPage = () => {
           />
         </div>
 
-        {/* <Pagination
+        <Pagination
           className="pagination--sticky"
           totalItems={totalItems}
           backwardText="Previous page"
@@ -49,7 +48,7 @@ const FilterPage = () => {
             }
             setFirstRowIndex(pageSize * (page - 1));
           }}
-        /> */}
+        />
       </div>
     </div>
   );
