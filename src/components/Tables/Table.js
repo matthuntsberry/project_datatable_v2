@@ -25,14 +25,13 @@ const Table = ({ rows, headers, scrollable, sticky, toggle }) => {
   const tbodyMarkup = rows.map((row, i) => renderRow(row, i));
 
   const tableStyles = classNames({
-    scrollable: scrollable,
-    "scrollable--sticky": scrollable && sticky
+    "table--scroll-x": scrollable
+    // "scrollable--sticky": scrollable && sticky
   });
 
   return (
     <div className="table__wrapper">
-      <div className="scroll">
-        {/* <div className={tableStyles}> */}
+      <div className={tableStyles}>
         <div className="">
           <table
             role="table"
