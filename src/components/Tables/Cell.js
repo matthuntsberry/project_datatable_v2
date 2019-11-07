@@ -27,7 +27,7 @@ const Cell = ({ content, header, sticky, headerIndex }) => {
           {i === 0 ? (
             <th
               role="rowheader"
-              className={sticky && "sticky cell"}
+              className={sticky && "sticky cell row__header"}
               scope="row"
             >
               {value}

@@ -5,14 +5,28 @@
   overflow-x: scroll;
 }
 
-td,
-th {
+.data-table {
+}
+
+.cell {
   white-space: nowrap;
 }
 
-.sticky.cell {
-  height: 50px;
+// This is to fix a weird bug in FF to
+// show a bottom border for the table th
+.row__header {
+  transform: scale(0.9);
 }
+
+.cell:last-child {
+  width: 50px;
+  padding: 0;
+  justify-items: end;
+}
+
+// .sticky {
+//   border: 1px solid black;
+// }
 
 // .table__wrapper {
 //   display: grid;
@@ -66,9 +80,3 @@ th {
 // .table__row .cell {
 //   background-color: #fff;
 // }
-
-.cell:last-child {
-  width: 50px;
-  padding: 0;
-  justify-items: end;
-}
