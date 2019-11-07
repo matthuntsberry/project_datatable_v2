@@ -1,5 +1,7 @@
-.table-wrapper {
-  position: relative;
+.table__wrapper {
+  display: grid;
+
+  grid-template-columns: 1fr auto;
 }
 
 .table--scroll-x,

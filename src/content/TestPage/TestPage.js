@@ -13,6 +13,7 @@ const FilterPage = () => {
   const [totalItems] = useState(20);
   const [firstRowIndex, setFirstRowIndex] = useState(0);
   const [currentPageSize, setCurrentPageSize] = useState(10);
+  const [toggled, setToggle] = useState(false);
 
   return (
     <div className="test-page">
@@ -23,15 +24,17 @@ const FilterPage = () => {
       </div>
 
       <div className="table-component__container">
-        <TableToolBar />
+        <TableToolBar handleToggle={setToggle} toggle={toggled} />
         <div className="">
           <Table
             headers={headers}
             rows={rows.slice(firstRowIndex, firstRowIndex + currentPageSize)}
+            toggle={toggled}
             scrollable
             sticky
           />
         </div>
+
         {/* <Pagination
           className="pagination--sticky"
           totalItems={totalItems}
