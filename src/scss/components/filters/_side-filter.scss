@@ -1,7 +1,14 @@
 .filter__container {
-  display: block;
-  padding: 0;
-  background-color: #fff;
+  position: fixed;
+  width: 0;
   height: 100%;
+  padding: 0;
+  overflow: hidden;
+  transition: 5s;
+  background-color: #fff;
+}
+
+.filter__container--is-open {
   width: 256px;
+  transition: 5s;
 }

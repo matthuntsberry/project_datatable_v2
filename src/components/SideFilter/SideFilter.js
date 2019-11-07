@@ -1,9 +1,14 @@
 import React from "react";
+import classNames from "classnames";
+
 import { Select } from "carbon-components-react";
 
-const Filter = () => {
+const Filter = ({ toggle }) => {
+  const filterStyles = classNames({
+    "filter container filter__container--is-open": toggle
+  });
   return (
-    <div className="filter__container">
+    <div className={filterStyles}>
       <h1>Hiya</h1>
     </div>
   );

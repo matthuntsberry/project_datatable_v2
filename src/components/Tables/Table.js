@@ -43,7 +43,7 @@ const Table = ({ rows, headers, scrollable, sticky, toggle }) => {
           </table>
         </div>
       </div>
-      {toggle && <SideFilter />}
+      {toggle && <SideFilter toggle={toggle} />}
     </div>
   );
 };
