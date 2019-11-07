@@ -1,5 +1,7 @@
 .table__wrapper {
+  display: grid;
   position: relative;
+  grid-template-columns: 1fr auto;
 }
 
 .scrollable {
@@ -12,15 +14,17 @@
   overflow-y: auto;
 }
 
-.data-table th.sticky {
-  position: sticky;
-  z-index: 0;
-  top: auto;
-  left: 0;
-  width: 200px;
-  height: 50px;
-  overflow-y: auto;
-  border-bottom: 0;
+.data-table th.sticky.cell {
+  @include medium {
+    position: sticky;
+    z-index: 0;
+    top: auto;
+    left: 0;
+    width: 200px;
+    // height: 50px;
+    overflow-y: auto;
+    box-shadow: 1px 0px 1px #dcdcdc;
+  }
 
   @include large {
     width: auto;
@@ -40,7 +44,7 @@
 }
 
 th.sticky.cell {
-  box-shadow: 1px -1px 1px #dcdcdc;
+  // box-shadow: 1px 1px 1px #dcdcdc;
 }
 
 .table__row .cell {

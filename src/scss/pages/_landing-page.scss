@@ -10,15 +10,16 @@
 
 .landing-page__r2 {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr 256px;
   margin: 0;
   background-color: #fff;
 
-  @include medium {
-    grid-template-columns: 1fr 1fr;
-  }
+  // @include medium {
+  //   grid-template-columns: 1fr 256px;
+  // }
 }
 
-.landing-page__r3 {
-  padding-bottom: 32px;
-}
+// .side-filter-col__container {
+//   padding: 0;
+//   padding-right: 16px;
+// }

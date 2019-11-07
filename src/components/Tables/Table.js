@@ -1,8 +1,9 @@
 import React from "react";
 import Cell from "./Cell";
 import classNames from "classnames";
+import SideFilter from "../../components/SideFilter";
 
-const Table = ({ rows, headers, scrollable, sticky }) => {
+const Table = ({ rows, headers, scrollable, sticky, toggle }) => {
   const renderHeadingRow = (header, key) => {
     return <Cell content={header} header={true} sticky={sticky} key={key} />;
   };
@@ -42,6 +43,7 @@ const Table = ({ rows, headers, scrollable, sticky }) => {
           </table>
         </div>
       </div>
+      {toggle && <SideFilter toggle={toggle} />}
     </div>
   );
 };
