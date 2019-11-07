@@ -1,7 +1,7 @@
 .table__wrapper {
   display: grid;
-
   grid-template-columns: 1fr auto;
+  height: 300px;
 }
 
 .table--scroll-x,

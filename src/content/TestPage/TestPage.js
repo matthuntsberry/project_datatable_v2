@@ -35,7 +35,7 @@ const FilterPage = () => {
           />
         </div>
 
-        {/* <Pagination
+        <Pagination
           className="pagination--sticky"
           totalItems={totalItems}
           backwardText="Previous page"
@@ -49,7 +49,7 @@ const FilterPage = () => {
             }
             setFirstRowIndex(pageSize * (page - 1));
           }}
-        /> */}
+        />
       </div>
     </div>
   );
