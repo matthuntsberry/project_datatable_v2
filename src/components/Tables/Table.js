@@ -6,11 +6,14 @@ import SideFilter from "../../components/SideFilter";
 const Table = ({ rows, headers, scrollable, sticky, toggle }) => {
   const [searchTerm, setSearchTerm] = useState([]);
 
-  const results = !searchTerm
-    ? rows
-    : rows.filter(row => {
-        return row.name.includes(searchTerm.map(s => s.name));
-      });
+  console.log(rows);
+  console.log(searchTerm);
+
+  // TODO the correct result aren't being appied because of the
+  // function I created to eliminate dupes.  Its only giving the key name/value
+  // need to loop all row probably not just return search term
+
+  const results = !searchTerm ? rows : searchTerm;
 
   const renderHeadingRow = (header, headerIndex) => {
     return (
@@ -65,12 +68,7 @@ const Table = ({ rows, headers, scrollable, sticky, toggle }) => {
         </div>
       </div>
       {toggle && (
-        <SideFilter
-          rows={results}
-          toggle={toggle}
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-        />
+        <SideFilter rows={rows} toggle={toggle} setSearchTerm={setSearchTerm} />
       )}
     </div>
   );
