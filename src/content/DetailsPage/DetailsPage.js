@@ -6,7 +6,7 @@ import TableToolBar from "../../components/TableToolBar";
 import PageHeader from "../../components/PageHeader";
 import db from "../../db/db";
 
-const FilterPage = () => {
+const DetailsPage = () => {
   let { headers, rows } = db;
 
   const [totalItems] = useState(20);
@@ -17,25 +17,21 @@ const FilterPage = () => {
   return (
     <div className="details-page">
       <div className="">
-        <div className="">
-          <PageHeader title="Details" />
-        </div>
+        <PageHeader title="Details" />
       </div>
 
       <div className="table-component__container">
         <TableToolBar handleToggle={setToggle} toggle={toggled} />
-        <div className="">
-          <Table
-            headers={headers}
-            rows={rows.slice(firstRowIndex, firstRowIndex + currentPageSize)}
-            toggle={toggled}
-            scrollable
-            sticky
-          />
-        </div>
+        <Table
+          headers={headers}
+          rows={rows.slice(firstRowIndex, firstRowIndex + currentPageSize)}
+          toggle={toggled}
+          scrollable
+          sticky
+        />
 
         <Pagination
-          className="pagination--sticky"
+          // className="pagination--sticky"
           totalItems={totalItems}
           backwardText="Previous page"
           forwardText="Next page"
@@ -54,4 +50,4 @@ const FilterPage = () => {
   );
 };
 
-export default FilterPage;
+export default DetailsPage;

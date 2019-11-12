@@ -7,10 +7,6 @@
 @import "carbon-components/scss/globals/scss/typography";
 @import "carbon-components/scss/globals/scss/vars";
 
-// Cloud PAL
-//@import '@console/pal/Connected/<pattern name>/styles.scss
-// @import "@console/pal/Components/PageHeader/styles";
-
 // app related imports
 @import "../scss/abstracts/variables";
 @import "../scss/abstracts/mixins";
@@ -21,9 +17,8 @@
 @import "../content/DetailsPage/details-page";
 
 // component related styles
-@import "../scss/components/buttons/buttons";
-@import "../scss/components/tables/tables";
-@import "../scss/components/tables/table-toolbar";
-@import "../scss/components/filters/side-filter";
-@import "../components/PageHeader/page-header";
 @import "../components/Sidebar/sidebar";
+@import "../components/PageHeader/page-header";
+@import "../components/Tables/tables";
+@import "../components/TableToolBar/table-toolbar";
+@import "../components/SideFilter/side-filter";

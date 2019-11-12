@@ -1,0 +1,76 @@
+.table-component__container {
+  padding-bottom: $spacing-07;
+}
+
+.component__container--table {
+  position: relative;
+
+  background-color: #fff;
+}
+
+.table__container {
+  display: grid;
+  position: relative;
+  z-index: 3;
+  grid-template-columns: 1fr auto;
+  // border-bottom: 1px solid #dcdcdc;
+
+  transform: translate3d(0, 0, 0);
+  transition: all 0.2s ease-in-out;
+}
+
+.table--scroll-x,
+.table--sticky {
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
+
+.table-row:last-child {
+  border: 0;
+}
+
+.table-col__header {
+  position: sticky;
+  z-index: 4;
+  top: 0;
+}
+
+.table-cell {
+  white-space: nowrap;
+}
+
+.table-cell:last-child {
+  width: 50px;
+  padding: 0;
+  justify-self: flex-end;
+}
+
+th.col-header--sticky:first-child,
+th.row-header--sticky:first-child {
+  background-color: #fff;
+
+  @include medium {
+    position: sticky;
+    z-index: 2;
+    left: 0;
+  }
+
+  @include large {
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
+
+th.col-header--sticky:first-child {
+  background-color: #dcdcdc;
+}
+
+th.row-header--sticky:first-child {
+  // TODO Possibly make shadow only on tablet breakpoint
+  box-shadow: 4px 0 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+td.table-cell {
+  background-color: #fff;
+}

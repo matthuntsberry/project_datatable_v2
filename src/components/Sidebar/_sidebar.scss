@@ -1,7 +1,13 @@
-.sidebar {
+.component__container--sidebar {
   grid-area: sidebar;
+  grid-row: 1 / 4;
+  height: 100%;
+}
+
+.sidebar {
   width: 48px;
-  height: 100vh;
+  height: 100%;
+  overflow: hidden;
   background-color: #171717;
 
   @include large {

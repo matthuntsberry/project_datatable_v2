@@ -1,9 +1,11 @@
-.app__container {
+.component__container--app {
   display: grid;
   grid-template-areas:
     "header header"
     "sidebar content";
   grid-template-columns: 48px 1fr;
+  grid-template-rows: 48px auto;
+  height: 100vh;
   background-color: #f4f4f4;
 
   @include large {
@@ -13,6 +15,7 @@
 
 .content {
   grid-area: content;
+  grid-row: 1 / 4;
   width: calc(100vw - 48px);
 
   @include large {

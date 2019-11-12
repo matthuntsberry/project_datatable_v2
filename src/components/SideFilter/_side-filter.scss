@@ -1,0 +1,26 @@
+.filter__container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  min-height: 100%;
+  background-color: #fff;
+}
+
+.side-filter {
+  background-color: #fff;
+  height: 100%;
+  position: absolute;
+  padding: 16px;
+  top: 0;
+  right: 0;
+  width: 0;
+  overflow-x: hidden;
+  z-index: 1;
+  transition: 0.2s;
+}
+
+.side-filter--is-open {
+  width: 220px;
+}
+.table-filter--is-open {
+  margin-right: 220px;
+}
