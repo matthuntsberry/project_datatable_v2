@@ -6,10 +6,10 @@ const headers = [
     key: "name",
     header: "Name"
   },
-  {
-    key: "label",
-    header: ""
-  },
+  // {
+  //   key: "label",
+  //   header: ""
+  // },
   {
     key: "type",
     header: "Type"
@@ -40,7 +40,7 @@ const rows = [
   {
     id: "1",
     name: "SLADC232270-msf",
-    label: "SLADC232270-msf",
+    // label: "SLADC232270-msf",
     type: "Virtual Server",
     location: "London",
     publicIp: "158.268.124.13",
@@ -51,7 +51,7 @@ const rows = [
   {
     id: "2",
     name: "softlayer.emerald.com",
-    label: "softlayer.emerald.com",
+    // label: "softlayer.emerald.com",
     type: "Virtual Server",
     location: "Sydney",
     publicIp: "169.57.188.29",
@@ -62,7 +62,7 @@ const rows = [
   {
     id: "3",
     name: "control.integrationdemo",
-    label: "control.integrationdemo",
+    // label: "control.integrationdemo",
     type: "Virtual Server",
     location: "Dallas",
     publicIp: "168.12.46.94",
@@ -73,7 +73,7 @@ const rows = [
   {
     id: "4",
     name: "prod.checkout.com",
-    label: "prod.checkout.com",
+    // label: "prod.checkout.com",
     type: "Virtual Server",
     location: "cell text",
     publicIp: "198.168.203.23",
@@ -84,7 +84,7 @@ const rows = [
   {
     id: "5",
     name: "baremetal.emerald.com",
-    label: "baremetal.emerald.com",
+    // label: "baremetal.emerald.com",
     type: "bare Metal",
     location: "Sydney",
     publicIp: "184.193.10.67",
@@ -95,7 +95,7 @@ const rows = [
   {
     id: "6",
     name: "SLADC232270-msf",
-    label: "SLADC232270-msf",
+    // label: "SLADC232270-msf",
     type: "Virtual Server",
     location: "London",
     publicIp: "158.177.134.13",
@@ -106,7 +106,7 @@ const rows = [
   {
     id: "7",
     name: "softlayer.emerald.com",
-    label: "softlayer.emerald.com",
+    // label: "softlayer.emerald.com",
     type: "Virtual Server",
     location: "Sydney",
     publicIp: "169.47.198.29",
@@ -117,7 +117,7 @@ const rows = [
   {
     id: "8",
     name: "control.integrationdemo",
-    label: "control.integrationdemo",
+    // label: "control.integrationdemo",
     type: "Virtual Server",
     location: "Dallas",
     publicIp: "168.1.444.9",
@@ -128,7 +128,7 @@ const rows = [
   {
     id: "9",
     name: "prod.checkout.com",
-    label: "prod.checkout.com",
+    // label: "prod.checkout.com",
     type: "Virtual Server",
     location: "cell text",
     publicIp: "108.162.299.23",
@@ -139,7 +139,7 @@ const rows = [
   {
     id: "10",
     name: "baremetal.emerald.com",
-    label: "baremetal.emerald.com",
+    // label: "baremetal.emerald.com",
     type: "bare Metal",
     location: "Sydney",
     publicIp: "182.172.21.67",
@@ -150,7 +150,7 @@ const rows = [
   {
     id: "11",
     name: "SLADC232270-msf",
-    label: "SLADC232270-msf",
+    // label: "SLADC232270-msf",
     type: "Virtual Server",
     location: "London",
     publicIp: "158.177.124.3",
@@ -161,7 +161,7 @@ const rows = [
   {
     id: "12",
     name: "softlayer.emerald.com",
-    label: "softlayer.emerald.com",
+    // label: "softlayer.emerald.com",
     type: "Virtual Server",
     location: "Sydney",
     publicIp: "168.157.96.29",
@@ -172,7 +172,7 @@ const rows = [
   {
     id: "13",
     name: "control.integrationdemo",
-    label: "control.integrationdemo",
+    // label: "control.integrationdemo",
     type: "Virtual Server",
     location: "Dallas",
     publicIp: "168.11.461.9",
@@ -183,7 +183,7 @@ const rows = [
   {
     id: "14",
     name: "prod.checkout.com",
-    label: "prod.checkout.com",
+    // label: "prod.checkout.com",
     type: "Virtual Server",
     location: "cell text",
     publicIp: "108.16.231.10",
@@ -194,7 +194,7 @@ const rows = [
   {
     id: "15",
     name: "baremetal.emerald.com",
-    label: "baremetal.emerald.com",
+    // label: "baremetal.emerald.com",
     type: "bare Metal",
     location: "Sydney",
     publicIp: "100.102.21.67",
@@ -205,7 +205,7 @@ const rows = [
   {
     id: "16",
     name: "SLADC232270-msf",
-    label: "SLADC232270-msf",
+    // label: "SLADC232270-msf",
     type: "Virtual Server",
     location: "London",
     publicIp: "188.115.1.13",
@@ -216,7 +216,7 @@ const rows = [
   {
     id: "17",
     name: "softlayer.emerald.com",
-    label: "softlayer.emerald.com",
+    // label: "softlayer.emerald.com",
     type: "Virtual Server",
     location: "Sydney",
     publicIp: "158.7.196.2",
@@ -227,7 +227,7 @@ const rows = [
   {
     id: "18",
     name: "control.integrationdemo",
-    label: "control.integrationdemo",
+    // label: "control.integrationdemo",
     type: "Virtual Server",
     location: "Dallas",
     publicIp: "168.111.4.109",
@@ -238,7 +238,7 @@ const rows = [
   {
     id: "19",
     name: "prod.checkout.com",
-    label: "prod.checkout.com",
+    // label: "prod.checkout.com",
     type: "Virtual Server",
     location: "cell text",
     publicIp: "101.18.23.231",
@@ -249,7 +249,7 @@ const rows = [
   {
     id: "20",
     name: "baremetal.emerald.com",
-    label: "baremetal.emerald.com",
+    // label: "baremetal.emerald.com",
     type: "bare Metal",
     location: "Sydney",
     publicIp: "12.3.202.67",

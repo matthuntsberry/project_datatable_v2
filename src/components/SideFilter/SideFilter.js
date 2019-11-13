@@ -2,8 +2,9 @@ import React, { useState } from "react";
 
 import { MultiSelect } from "carbon-components-react";
 
-const Filter = ({ toggle, setSearchTerm, rows }) => {
-  const handleChange = evt => {
+const Filter = ({ toggle, setSearchTerm, setSelectValue, rows }) => {
+  const handleChange = (evt, selectValue) => {
+    setSelectValue(selectValue);
     setSearchTerm(evt.selectedItems);
   };
 
@@ -46,8 +47,13 @@ const Filter = ({ toggle, setSearchTerm, rows }) => {
             label="Select Name"
             invalid={false}
             invalidText="Invalid Selection"
-            onChange={handleChange}
+            // onChange={evt => {
+            //   setSelectValue("name");
+            //   setSearchTerm(evt.selectedItems);
+            // }}
+            onChange={evt => handleChange(evt, "name")}
             items={uniqBy(rows, "name")}
+            // items={rows}
             itemToString={item => (item ? item.name : "")}
             translateWithId={() => {}}
           />
@@ -60,7 +66,7 @@ const Filter = ({ toggle, setSearchTerm, rows }) => {
             label="Select Location"
             invalid={false}
             invalidText="Invalid Selection"
-            onChange={handleChange}
+            onChange={evt => handleChange(evt, "location")}
             items={uniqBy(rows, "location")}
             itemToString={item => (item ? item.location : "")}
             translateWithId={() => {}}

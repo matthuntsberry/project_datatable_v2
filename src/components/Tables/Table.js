@@ -5,15 +5,29 @@ import SideFilter from "../../components/SideFilter";
 
 const Table = ({ rows, headers, scrollable, sticky, toggle }) => {
   const [searchTerm, setSearchTerm] = useState([]);
-
-  console.log(rows);
-  console.log(searchTerm);
+  const [selectValue, setSelectValue] = useState([]);
 
   // TODO the correct result aren't being appied because of the
   // function I created to eliminate dupes.  Its only giving the key name/value
   // need to loop all row probably not just return search term
 
-  const results = !searchTerm ? rows : searchTerm;
+  console.log(searchTerm);
+  const getResults = () => {
+    const mapped = searchTerm.map(search => search[selectValue]);
+
+    const newArr = [];
+
+    for (let i = 0; i < rows.length; i++) {
+      if (mapped.includes(rows[i][selectValue])) newArr.push(rows[i]);
+    }
+    console.log("mapped", mapped);
+    console.log("newArr", newArr);
+    return newArr;
+  };
+
+  const results = searchTerm.length === 0 ? rows : getResults();
+
+  console.log(results);
 
   const renderHeadingRow = (header, headerIndex) => {
     return (
@@ -68,7 +82,12 @@ const Table = ({ rows, headers, scrollable, sticky, toggle }) => {
         </div>
       </div>
       {toggle && (
-        <SideFilter rows={rows} toggle={toggle} setSearchTerm={setSearchTerm} />
+        <SideFilter
+          rows={rows}
+          toggle={toggle}
+          setSearchTerm={setSearchTerm}
+          setSelectValue={setSelectValue}
+        />
       )}
     </div>
   );
