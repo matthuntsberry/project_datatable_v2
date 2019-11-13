@@ -1,27 +1,37 @@
 import React, { useState } from "react";
+import { Pagination } from "carbon-components-react";
 import Cell from "./Cell";
 import classNames from "classnames";
 import SideFilter from "../../components/SideFilter";
 
-const Table = ({ rows, headers, scrollable, sticky, toggle }) => {
+const Table = ({
+  rows,
+  headers,
+  scrollable,
+  sticky,
+  toggle,
+  totalItems,
+  currentPageSize,
+  setCurrentPageSize,
+  setFirstRowIndex
+}) => {
   const [searchTerm, setSearchTerm] = useState([]);
   const [selectValue, setSelectValue] = useState([]);
 
-  // TODO the correct result aren't being appied because of the
-  // function I created to eliminate dupes.  Its only giving the key name/value
-  // need to loop all row probably not just return search term
-
-  console.log(searchTerm);
   const getResults = () => {
     const mapped = searchTerm.map(search => search[selectValue]);
-
     const newArr = [];
 
-    for (let i = 0; i < rows.length; i++) {
-      if (mapped.includes(rows[i][selectValue])) newArr.push(rows[i]);
-    }
-    console.log("mapped", mapped);
-    console.log("newArr", newArr);
+    // for (let i = 0; i < rows.length; i++) {
+    //   if (mapped.includes(rows[i][selectValue])) newArr.push(rows[i]);
+    // }
+
+    rows.forEach(row => {
+      if (mapped.includes(row[selectValue])) {
+        newArr.push(row);
+      }
+    });
+
     return newArr;
   };
 
@@ -81,6 +91,21 @@ const Table = ({ rows, headers, scrollable, sticky, toggle }) => {
           </table>
         </div>
       </div>
+      <Pagination
+        className={toggle && "table-filter--is-open--pagination"}
+        totalItems={totalItems}
+        backwardText="Previous page"
+        forwardText="Next page"
+        pageSize={currentPageSize}
+        pageSizes={[5, 10, 15, 25]}
+        itemsPerPageText="Items per page"
+        onChange={({ page, pageSize }) => {
+          if (pageSize !== currentPageSize) {
+            setCurrentPageSize(pageSize);
+          }
+          setFirstRowIndex(pageSize * (page - 1));
+        }}
+      />
       {toggle && (
         <SideFilter
           rows={rows}

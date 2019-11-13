@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Pagination } from "carbon-components-react";
+// import { Pagination } from "carbon-components-react";
 
 import Table from "../../components/Tables";
 import TableToolBar from "../../components/TableToolBar";
@@ -26,11 +26,15 @@ const DetailsPage = () => {
           headers={headers}
           rows={rows.slice(firstRowIndex, firstRowIndex + currentPageSize)}
           toggle={toggled}
+          totalItems={totalItems}
+          currentPageSize={currentPageSize}
+          setCurrentPageSize={setCurrentPageSize}
+          setFirstRowIndex={setFirstRowIndex}
           scrollable
           sticky
         />
 
-        <Pagination
+        {/* <Pagination
           // className="pagination--sticky"
           totalItems={totalItems}
           backwardText="Previous page"
@@ -44,7 +48,7 @@ const DetailsPage = () => {
             }
             setFirstRowIndex(pageSize * (page - 1));
           }}
-        />
+        /> */}
       </div>
     </div>
   );

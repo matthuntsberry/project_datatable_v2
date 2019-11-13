@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { MultiSelect } from "carbon-components-react";
+import { Button, MultiSelect } from "carbon-components-react";
 
 const Filter = ({ toggle, setSearchTerm, setSelectValue, rows }) => {
   const handleChange = (evt, selectValue) => {
@@ -39,7 +39,7 @@ const Filter = ({ toggle, setSearchTerm, setSelectValue, rows }) => {
         className={toggle ? "side-filter side-filter--is-open" : "side-filter"}
       >
         <h6 className="filter__title">Filter</h6>
-        <div className="multiselect__container multiselect--name">
+        {/* <div className="multiselect__container multiselect--name">
           <MultiSelect
             titleText="Name"
             id="multiselect__name"
@@ -47,17 +47,12 @@ const Filter = ({ toggle, setSearchTerm, setSelectValue, rows }) => {
             label="Select Name"
             invalid={false}
             invalidText="Invalid Selection"
-            // onChange={evt => {
-            //   setSelectValue("name");
-            //   setSearchTerm(evt.selectedItems);
-            // }}
             onChange={evt => handleChange(evt, "name")}
             items={uniqBy(rows, "name")}
-            // items={rows}
             itemToString={item => (item ? item.name : "")}
             translateWithId={() => {}}
           />
-        </div>
+        </div> */}
         <div className="multiselect__container multiselect--location">
           <MultiSelect
             titleText="Location"
@@ -72,6 +67,78 @@ const Filter = ({ toggle, setSearchTerm, setSelectValue, rows }) => {
             translateWithId={() => {}}
           />
         </div>
+        <div className="multiselect__container multiselect--publicIp">
+          <MultiSelect
+            titleText="Public IP"
+            id="multiselect__publicIp"
+            useTitleInItem={false}
+            label="Select Public IP"
+            invalid={false}
+            invalidText="Invalid Selection"
+            onChange={evt => handleChange(evt, "publicIp")}
+            items={uniqBy(rows, "publicIp")}
+            itemToString={item => (item ? item.publicIp : "")}
+            translateWithId={() => {}}
+          />
+        </div>
+        <div className="multiselect__container multiselect--privateIp">
+          <MultiSelect
+            titleText="Private IP"
+            id="multiselect__privateIp"
+            useTitleInItem={false}
+            label="Select Private IP"
+            invalid={false}
+            invalidText="Invalid Selection"
+            onChange={evt => handleChange(evt, "privateIp")}
+            items={uniqBy(rows, "privateIp")}
+            itemToString={item => (item ? item.privateIp : "")}
+            translateWithId={() => {}}
+          />
+        </div>
+        <div className="multiselect__container multiselect--type">
+          <MultiSelect
+            titleText="Device Type"
+            id="multiselect__type"
+            useTitleInItem={false}
+            label="Select Device Type"
+            invalid={false}
+            invalidText="Invalid Selection"
+            onChange={evt => handleChange(evt, "type")}
+            items={uniqBy(rows, "type")}
+            itemToString={item => (item ? item.type : "")}
+            translateWithId={() => {}}
+          />
+        </div>
+        {/* <div className="bx--btn-set">
+          <Button
+            className="button--filter-action"
+            disabled={false}
+            iconDescription="Button icon"
+            kind="secondary"
+            onClick={function noRefCheck() {}}
+            onFocus={function noRefCheck() {}}
+            renderIcon={undefined}
+            size="default"
+            tabIndex={0}
+            type="button"
+          >
+            Clear
+          </Button>
+          <Button
+            className="button--filter-action"
+            disabled={false}
+            iconDescription="Button icon"
+            kind="primary"
+            onClick={function noRefCheck() {}}
+            onFocus={function noRefCheck() {}}
+            renderIcon={undefined}
+            size="default"
+            tabIndex={0}
+            type="button"
+          >
+            Apply
+          </Button>
+        </div> */}
       </div>
     </div>
   );

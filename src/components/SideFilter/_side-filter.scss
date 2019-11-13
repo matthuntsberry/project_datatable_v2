@@ -1,4 +1,5 @@
 .filter__container {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr auto;
   min-height: 100%;
@@ -6,21 +7,35 @@
 }
 
 .side-filter {
-  background-color: #fff;
-  height: 100%;
   position: absolute;
-  padding: 16px;
+  z-index: 1;
   top: 0;
   right: 0;
   width: 0;
+  height: 100%;
+  // padding: 16px;
   overflow-x: hidden;
-  z-index: 1;
   transition: 0.2s;
+  background-color: #fff;
+  border-left: 1px solid #dcdcdc;
 }
 
 .side-filter--is-open {
-  width: 220px;
+  width: 224px;
 }
+
 .table-filter--is-open {
-  margin-right: 220px;
+  margin-right: 224px;
+}
+
+.table-filter--is-open--pagination {
+  padding-right: 224px;
+}
+
+.multiselect__container {
+  padding: 16px 0;
+}
+
+.button--filter-action {
+  width: 124px;
 }

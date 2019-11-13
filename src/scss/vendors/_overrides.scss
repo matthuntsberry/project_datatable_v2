@@ -8,10 +8,18 @@
 }
 
 .bx--pagination {
+  transition: all 0.2s ease-in-out;
   background-color: #fff;
 }
 
 .bx--data-table {
-  border-collapse: separate; /* Don't collapse */
   border-spacing: 0;
+  border-collapse: separate; /* Don't collapse */
+}
+
+.bx--btn-set {
+  width: 224px;
+  margin: 0;
+  position: absolute;
+  bottom: 0;
 }
