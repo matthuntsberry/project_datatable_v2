@@ -1,6 +1,7 @@
 .table-component__container {
   padding-bottom: $spacing-07;
-  transition: all 0.3;
+
+  overflow: hidden;
 }
 
 .component__container--table {
@@ -10,13 +11,9 @@
 }
 
 .table__container {
-  display: grid;
   position: relative;
-  z-index: 3;
-  grid-template-columns: 1fr;
-
   transform: translate3d(0, 0, 0);
-  transition: all 0.3s ease-in-out;
+  transition: all 0.22s ease-in-out;
 }
 
 .table--scroll-x,
@@ -32,7 +29,6 @@
 
 .table-col__header {
   position: sticky;
-  z-index: 4;
   top: 0;
 }
 
@@ -52,12 +48,10 @@ th.row-header--sticky:first-child {
 
   @include medium {
     position: sticky;
-    z-index: 2;
     left: 0;
   }
 
   @include large {
-    transform: scale(1);
     box-shadow: none;
   }
 }

@@ -1,36 +1,92 @@
-.filter__container {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  min-height: 100%;
-  background-color: #fff;
-}
+// .component__container--side-filter {
+//   transition: all 0.4s;
+// }
 
-.side-filter {
-  position: absolute;
-  display: grid;
-  z-index: 1;
-  top: 0;
-  right: 0;
-  width: 0;
-  height: 100%;
-  overflow-x: hidden;
-  background-color: #fff;
-  border-left: 1px solid #dcdcdc;
-}
+// .side-filter {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   // width: 0;
+//   height: 100%;
+//   overflow-x: hidden;
+//   border-left: 1px solid #dcdcdc;
+//   background-color: #fff;
+//   transition: 0.4s all;
+// }
 
-.side-filter--is-open {
-  width: 224px;
-}
+// // .side-filter--is-open {
+// //   width: 224px;
+// // }
 
-.table-filter--is-open {
-  margin-right: 224px;
-}
+// .table-filter--is-open {
+//   margin-right: 224px;
+// }
 
 .multiselect__container {
   padding: 16px;
 }
 
-.multiselect {
-  border-top: 0;
+// .multiselect {
+//   border-top: 0;
+// }
+
+.side-filter {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  transition: visibility 0.2s 0.2s ease-in-out;
+  height: 100%;
+}
+
+.side-filter.side-filter--is-open {
+  visibility: visible;
+  transition: visibility 0s 0s;
+}
+
+.side-filter--from-right {
+  right: 0;
+}
+
+.side-filter--from-left {
+  left: 0;
+}
+
+.side-filter--is-open {
+  transition: transform 0.1s;
+  transform: translateY(0);
+}
+
+.side-filter__container {
+  position: relative;
+  width: 224px;
+  height: 595px;
+  transition: transform 0.2s;
+  // border: solid;
+}
+
+.side-filter--from-right .side-filter__container {
+  right: 0;
+  transform: translate3d(100%, 0, 0);
+}
+
+.side-filter--from-left .side-filter__container {
+  left: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+
+.side-filter--is-open .side-filter__container {
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0s;
+}
+
+.table-filter--is-open {
+  margin-right: 224px;
+  box-shadow: 4px 0 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.button__container--filter-actions {
+  position: absolute;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  bottom: 0;
 }
