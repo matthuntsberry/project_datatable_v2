@@ -8,14 +8,13 @@
 
 .side-filter {
   position: absolute;
+  display: grid;
   z-index: 1;
   top: 0;
   right: 0;
   width: 0;
   height: 100%;
-  // padding: 16px;
   overflow-x: hidden;
-  transition: 0.2s;
   background-color: #fff;
   border-left: 1px solid #dcdcdc;
 }
@@ -28,14 +27,10 @@
   margin-right: 224px;
 }
 
-.table-filter--is-open--pagination {
-  padding-right: 224px;
-}
-
 .multiselect__container {
-  padding: 16px 0;
+  padding: 16px;
 }
 
-.button--filter-action {
-  width: 124px;
+.multiselect {
+  border-top: 0;
 }

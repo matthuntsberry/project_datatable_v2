@@ -90,22 +90,23 @@ const Table = ({
             <tbody>{tbodyMarkup}</tbody>
           </table>
         </div>
+        <Pagination
+          className={toggle ? "table-filter--is-open--pagination" : ""}
+          totalItems={totalItems}
+          backwardText="Previous page"
+          forwardText="Next page"
+          pageSize={currentPageSize}
+          pageSizes={[5, 10, 15, 25]}
+          itemsPerPageText="Items per page"
+          onChange={({ page, pageSize }) => {
+            if (pageSize !== currentPageSize) {
+              setCurrentPageSize(pageSize);
+            }
+            setFirstRowIndex(pageSize * (page - 1));
+          }}
+        />
       </div>
-      <Pagination
-        className={toggle && "table-filter--is-open--pagination"}
-        totalItems={totalItems}
-        backwardText="Previous page"
-        forwardText="Next page"
-        pageSize={currentPageSize}
-        pageSizes={[5, 10, 15, 25]}
-        itemsPerPageText="Items per page"
-        onChange={({ page, pageSize }) => {
-          if (pageSize !== currentPageSize) {
-            setCurrentPageSize(pageSize);
-          }
-          setFirstRowIndex(pageSize * (page - 1));
-        }}
-      />
+
       {toggle && (
         <SideFilter
           rows={rows}

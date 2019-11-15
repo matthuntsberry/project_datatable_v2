@@ -57,6 +57,7 @@ const Filter = ({ toggle, setSearchTerm, setSelectValue, rows }) => {
           <MultiSelect
             titleText="Location"
             id="multiselect__location"
+            class="multiselect"
             useTitleInItem={false}
             label="Select Location"
             invalid={false}
@@ -109,7 +110,7 @@ const Filter = ({ toggle, setSearchTerm, setSelectValue, rows }) => {
             translateWithId={() => {}}
           />
         </div>
-        {/* <div className="bx--btn-set">
+        <div className="button__container">
           <Button
             className="button--filter-action"
             disabled={false}
@@ -138,7 +139,7 @@ const Filter = ({ toggle, setSearchTerm, setSelectValue, rows }) => {
           >
             Apply
           </Button>
-        </div> */}
+        </div>
       </div>
     </div>
   );

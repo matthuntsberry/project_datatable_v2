@@ -1,5 +1,6 @@
 .table-component__container {
   padding-bottom: $spacing-07;
+  transition: all 0.3;
 }
 
 .component__container--table {
@@ -12,10 +13,10 @@
   display: grid;
   position: relative;
   z-index: 3;
-  grid-template-columns: 1fr auto;
-  // height: 400px;
+  grid-template-columns: 1fr;
+
   transform: translate3d(0, 0, 0);
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .table--scroll-x,
