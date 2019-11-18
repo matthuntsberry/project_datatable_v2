@@ -1,20 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Close16 } from "@carbon/icons-react";
 import { Button, MultiSelect } from "carbon-components-react";
+import { SideFilterContext } from "../../context/SideFilterContext";
 
 const Filter = ({
-  pills,
   setPills,
-  setToggle,
-  toggle,
+  // setToggle,
+  // toggle,
   setSearchTerm,
   setSelectValue,
   rows
 }) => {
+  const { handleToggleClick } = useContext(SideFilterContext);
+
   const handleChange = (evt, selectValue) => {
     setSelectValue(selectValue);
     setSearchTerm(evt.selectedItems);
-    console.log(selectValue);
     setPills(evt.selectedItems.map(item => item[selectValue]));
   };
 
@@ -25,9 +26,10 @@ const Filter = ({
     setSearchTerm([]);
   };
 
-  const handleToggleClick = evt => {
-    setToggle(!toggle);
-  };
+  // const handleToggleClick = evt => {
+  //   setToggle(!toggle);
+  //   console.log(toggle);
+  // };
 
   function uniqBy(arr, key) {
     // return only your given key

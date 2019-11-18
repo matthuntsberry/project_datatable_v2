@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Search } from "carbon-components-react";
 import {
   Renew16,
@@ -6,15 +6,18 @@ import {
   Settings16,
   Close16
 } from "@carbon/icons-react";
+import { SideFilterContext } from "../../context/SideFilterContext";
 
 const TableToolBar = ({
-  toggle,
-  handleToggle,
+  // toggle,
+  // handleToggle,
   pills,
   setPills,
   input,
   setInput
 }) => {
+  const { toggle, setToggle } = useContext(SideFilterContext);
+
   const handleKeyDown = evt => {
     // add a new pill
     if (evt.key === "Enter" && input.length > 0) {
@@ -31,8 +34,6 @@ const TableToolBar = ({
   };
 
   const handleRemovePill = pillName => {
-    // const pillIndex = pills.indexOf(pillName);
-
     setPills([...pills].filter(pill => pill !== pillName));
   };
 
@@ -67,7 +68,7 @@ const TableToolBar = ({
         <Button
           className="bx--btn bx--btn--ghost"
           onClick={() => {
-            handleToggle(!toggle);
+            setToggle(!toggle);
           }}
         >
           <SettingsAdjust16 />

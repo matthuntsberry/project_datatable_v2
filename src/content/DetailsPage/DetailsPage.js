@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 // import { Pagination } from "carbon-components-react";
-
+import { SideFilterContext } from "../../context/SideFilterContext";
 import Table from "../../components/Tables";
 import TableToolBar from "../../components/TableToolBar";
 import PageHeader from "../../components/PageHeader";
@@ -8,6 +8,7 @@ import db from "../../db/db";
 
 const DetailsPage = () => {
   let { headers, rows } = db;
+  const { toggle, setToggle } = useContext(SideFilterContext);
 
   // TODO Move all hooks to a different file/useContext
   // pagination hooks
@@ -15,7 +16,7 @@ const DetailsPage = () => {
   const [firstRowIndex, setFirstRowIndex] = useState(0);
   const [currentPageSize, setCurrentPageSize] = useState(10);
   // side filter hooks
-  const [toggle, setToggle] = useState(false);
+  // const [toggle, setToggle] = useState(false);
   // pills hooks
   const [pills, setPills] = useState([]);
   const [input, setInput] = useState("");
@@ -28,7 +29,7 @@ const DetailsPage = () => {
 
       <div className="table-component__container">
         <TableToolBar
-          toggle={toggle}
+          // toggle={toggle}
           handleToggle={setToggle}
           pills={pills}
           setPills={setPills}
