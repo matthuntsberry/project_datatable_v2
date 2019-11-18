@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import { Pagination } from "carbon-components-react";
 
 import Table from "../../components/Tables";
@@ -9,10 +9,16 @@ import db from "../../db/db";
 const DetailsPage = () => {
   let { headers, rows } = db;
 
+  // TODO Move all hooks to a different file/useContext
+  // pagination hooks
   const [totalItems] = useState(20);
   const [firstRowIndex, setFirstRowIndex] = useState(0);
   const [currentPageSize, setCurrentPageSize] = useState(10);
-  const [toggled, setToggle] = useState(false);
+  // side filter hooks
+  const [toggle, setToggle] = useState(false);
+  // pills hooks
+  const [pills, setPills] = useState([]);
+  const [input, setInput] = useState("");
 
   return (
     <div className="details-page">
@@ -21,11 +27,21 @@ const DetailsPage = () => {
       </div>
 
       <div className="table-component__container">
-        <TableToolBar handleToggle={setToggle} toggle={toggled} />
+        <TableToolBar
+          toggle={toggle}
+          handleToggle={setToggle}
+          pills={pills}
+          setPills={setPills}
+          input={input}
+          setInput={setInput}
+        />
         <Table
           headers={headers}
           rows={rows.slice(firstRowIndex, firstRowIndex + currentPageSize)}
-          toggle={toggled}
+          toggle={toggle}
+          setToggle={setToggle}
+          pills={pills}
+          setPills={setPills}
           totalItems={totalItems}
           currentPageSize={currentPageSize}
           setCurrentPageSize={setCurrentPageSize}

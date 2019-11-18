@@ -22,6 +22,12 @@
   align-items: end;
 }
 
+// Chrome is rendering multiselect styles in correctly
+// this rule is to override the appearance
 [type="button"] {
   -webkit-appearance: none;
 }
+
+// .bx--list-box__selection {
+//   display: none;
+// }

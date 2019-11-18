@@ -10,6 +10,9 @@ const Table = ({
   scrollable,
   sticky,
   toggle,
+  setToggle,
+  pills,
+  setPills,
   totalItems,
   currentPageSize,
   setCurrentPageSize,
@@ -66,14 +69,15 @@ const Table = ({
 
   const tbodyMarkup = results.map((row, i) => renderRow(row, i));
 
+  //  Dynamic Styles
   const tableStyles = classNames({
     "table--scroll-x": scrollable,
     "table--sticky-scroll": scrollable && sticky
   });
 
   const filterStyles = classNames({
-    "side-filter--is-open": toggle,
-    "side-filter side-filter--from-right": true
+    "component__container--side-filter side-filter--from-right": true,
+    "side-filter--is-open": toggle
   });
 
   return (
@@ -92,33 +96,34 @@ const Table = ({
             <thead>{theadMarkup}</thead>
             <tbody>{tbodyMarkup}</tbody>
           </table>
-          <Pagination
-            className={toggle ? "table-filter--is-open--pagination" : ""}
-            totalItems={totalItems}
-            backwardText="Previous page"
-            forwardText="Next page"
-            pageSize={currentPageSize}
-            pageSizes={[5, 10, 15, 25]}
-            itemsPerPageText="Items per page"
-            onChange={({ page, pageSize }) => {
-              if (pageSize !== currentPageSize) {
-                setCurrentPageSize(pageSize);
-              }
-              setFirstRowIndex(pageSize * (page - 1));
-            }}
-          />
         </div>
+        <Pagination
+          className={toggle ? "table-filter--is-open--pagination" : ""}
+          totalItems={totalItems}
+          backwardText="Previous page"
+          forwardText="Next page"
+          pageSize={currentPageSize}
+          pageSizes={[5, 10, 15, 25]}
+          itemsPerPageText="Items per page"
+          onChange={({ page, pageSize }) => {
+            if (pageSize !== currentPageSize) {
+              setCurrentPageSize(pageSize);
+            }
+            setFirstRowIndex(pageSize * (page - 1));
+          }}
+        />
       </div>
 
       <div className={filterStyles}>
-        <div className="side-filter__container">
-          <SideFilter
-            rows={rows}
-            toggle={toggle}
-            setSearchTerm={setSearchTerm}
-            setSelectValue={setSelectValue}
-          />
-        </div>
+        <SideFilter
+          rows={rows}
+          toggle={toggle}
+          setToggle={setToggle}
+          setSearchTerm={setSearchTerm}
+          setSelectValue={setSelectValue}
+          pills={pills}
+          setPills={setPills}
+        />
       </div>
     </div>
   );

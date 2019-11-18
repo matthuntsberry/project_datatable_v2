@@ -1,11 +1,32 @@
 import React, { useState } from "react";
-
+import { Close16 } from "@carbon/icons-react";
 import { Button, MultiSelect } from "carbon-components-react";
 
-const Filter = ({ toggle, setSearchTerm, setSelectValue, rows }) => {
+const Filter = ({
+  pills,
+  setPills,
+  setToggle,
+  toggle,
+  setSearchTerm,
+  setSelectValue,
+  rows
+}) => {
   const handleChange = (evt, selectValue) => {
     setSelectValue(selectValue);
     setSearchTerm(evt.selectedItems);
+    console.log(selectValue);
+    setPills(evt.selectedItems.map(item => item[selectValue]));
+  };
+
+  const handleSelectClick = evt => {
+    console.log("clicked");
+    evt.preventDefault();
+    setSelectValue("");
+    setSearchTerm([]);
+  };
+
+  const handleToggleClick = evt => {
+    setToggle(!toggle);
   };
 
   function uniqBy(arr, key) {
@@ -34,8 +55,16 @@ const Filter = ({ toggle, setSearchTerm, setSelectValue, rows }) => {
   }
 
   return (
-    <>
-      <h6 className="filter__title">Filter</h6>
+    <div className="side-filter__container">
+      <div className="side-filter__heading-container">
+        <h6 className="filter__title">Filter</h6>
+        <button
+          className="side-filter__button--close"
+          onClick={handleToggleClick}
+        >
+          <Close16 />
+        </button>
+      </div>
 
       <div className="multiselect__container multiselect--location">
         <MultiSelect
@@ -94,13 +123,27 @@ const Filter = ({ toggle, setSearchTerm, setSelectValue, rows }) => {
           translateWithId={() => {}}
         />
       </div>
+      <div className="multiselect__container multiselect--tag">
+        <MultiSelect
+          titleText="Tags"
+          id="multiselect__tags"
+          useTitleInItem={false}
+          label="Select Tag"
+          invalid={false}
+          invalidText="Invalid Selection"
+          onChange={evt => handleChange(evt, "tag")}
+          items={uniqBy(rows, "tag")}
+          itemToString={item => (item ? item.type : "")}
+          translateWithId={() => {}}
+        />
+      </div>
       <div className="button__container--filter-actions">
         <Button
           className="button--filter-action"
           disabled={false}
           iconDescription="Button icon"
           kind="secondary"
-          onClick={function noRefCheck() {}}
+          onClick={evt => handleSelectClick(evt)}
           onFocus={function noRefCheck() {}}
           renderIcon={undefined}
           size="default"
@@ -114,7 +157,7 @@ const Filter = ({ toggle, setSearchTerm, setSelectValue, rows }) => {
           disabled={false}
           iconDescription="Button icon"
           kind="primary"
-          onClick={function noRefCheck() {}}
+          onClick={handleSelectClick}
           onFocus={function noRefCheck() {}}
           renderIcon={undefined}
           size="default"
@@ -124,7 +167,7 @@ const Filter = ({ toggle, setSearchTerm, setSelectValue, rows }) => {
           Apply
         </Button>
       </div>
-    </>
+    </div>
   );
 };
 

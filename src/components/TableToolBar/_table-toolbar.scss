@@ -3,3 +3,28 @@
   grid-template-columns: 1fr auto;
   margin: 0;
 }
+
+.component__container--toolbar-search {
+  display: grid;
+  grid-template-columns: auto minmax(200px, 1fr);
+}
+
+.search__component {
+  // min-width: 500px;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.pill__button {
+  display: flex;
+  align-content: center;
+  border: 0;
+  background-color: transparent;
+  fill: #fff;
+  cursor: pointer;
+}
