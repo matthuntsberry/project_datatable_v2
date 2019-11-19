@@ -1,33 +1,33 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Pagination } from "carbon-components-react";
 import Cell from "./Cell";
 import classNames from "classnames";
 import SideFilter from "../../components/SideFilter";
+import {
+  TableContext,
+  PaginationContext,
+  TableToolBarContext,
+  SideFilterContext
+} from "../../context";
 
-const Table = ({
-  rows,
-  headers,
-  scrollable,
-  sticky,
-  toggle,
-  setToggle,
-  pills,
-  setPills,
-  totalItems,
-  currentPageSize,
-  setCurrentPageSize,
-  setFirstRowIndex
-}) => {
-  const [searchTerm, setSearchTerm] = useState([]);
-  const [selectValue, setSelectValue] = useState([]);
+const Table = ({ rows, headers, scrollable, sticky }) => {
+  const { searchTerm, setSearchTerm, selectValue, setSelectValue } = useContext(
+    TableContext
+  );
+
+  const {
+    totalItems,
+    currentPageSize,
+    setCurrentPageSize,
+    setFirstRowIndex
+  } = useContext(PaginationContext);
+
+  const { pills, setPills } = useContext(TableToolBarContext);
+  const { toggle, setToggle } = useContext(SideFilterContext);
 
   const getResults = () => {
     const mapped = searchTerm.map(search => search[selectValue]);
     const newArr = [];
-
-    // for (let i = 0; i < rows.length; i++) {
-    //   if (mapped.includes(rows[i][selectValue])) newArr.push(rows[i]);
-    // }
 
     rows.forEach(row => {
       if (mapped.includes(row[selectValue])) {

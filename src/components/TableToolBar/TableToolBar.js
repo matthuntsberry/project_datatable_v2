@@ -7,16 +7,11 @@ import {
   Close16
 } from "@carbon/icons-react";
 import { SideFilterContext } from "../../context/SideFilterContext";
+import { TableToolBarContext } from "../../context/TableToolBarContext";
 
-const TableToolBar = ({
-  // toggle,
-  // handleToggle,
-  pills,
-  setPills,
-  input,
-  setInput
-}) => {
+const TableToolBar = () => {
   const { toggle, setToggle } = useContext(SideFilterContext);
+  const { pills, setPills, input, setInput } = useContext(TableToolBarContext);
 
   const handleKeyDown = evt => {
     // add a new pill

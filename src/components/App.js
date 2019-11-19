@@ -3,6 +3,9 @@ import { Route, Switch } from "react-router-dom";
 import { Content } from "carbon-components-react/lib/components/UIShell";
 import Loadable from "react-loadable";
 import StateContextProvider from "../context/SideFilterContext";
+import TableContextProvider from "../context/TableContext";
+import TableToolBarContextProvider from "../context/TableToolBarContext";
+import PaginationContextProvider from "../context/PaginationContext";
 import GlobalHeader from "./GlobalHeader";
 import Sidebar from "./Sidebar";
 import "../scss/main.scss";
@@ -22,11 +25,17 @@ const App = () => {
       <GlobalHeader />
       <Sidebar />
       <StateContextProvider>
-        <Content className="content">
-          <Switch>
-            <Route exact path="/" component={DetailsPageComponent} />
-          </Switch>
-        </Content>
+        <TableContextProvider>
+          <TableToolBarContextProvider>
+            <PaginationContextProvider>
+              <Content className="content">
+                <Switch>
+                  <Route exact path="/" component={DetailsPageComponent} />
+                </Switch>
+              </Content>
+            </PaginationContextProvider>
+          </TableToolBarContextProvider>
+        </TableContextProvider>
       </StateContextProvider>
     </div>
   );

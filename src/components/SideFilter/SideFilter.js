@@ -2,16 +2,11 @@ import React, { useState, useContext } from "react";
 import { Close16 } from "@carbon/icons-react";
 import { Button, MultiSelect } from "carbon-components-react";
 import { SideFilterContext } from "../../context/SideFilterContext";
+import { TableToolBarContext } from "../../context/TableToolBarContext";
 
-const Filter = ({
-  setPills,
-  // setToggle,
-  // toggle,
-  setSearchTerm,
-  setSelectValue,
-  rows
-}) => {
+const Filter = ({ setSearchTerm, setSelectValue, rows }) => {
   const { handleToggleClick } = useContext(SideFilterContext);
+  const { setPills } = useContext(TableToolBarContext);
 
   const handleChange = (evt, selectValue) => {
     setSelectValue(selectValue);
