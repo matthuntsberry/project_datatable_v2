@@ -1,4 +1,7 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
+import WindowSizeListener from "react-window-size-listener";
+import Measure from "react-measure";
+
 import { Pagination } from "carbon-components-react";
 import Cell from "./Cell";
 import classNames from "classnames";
@@ -20,7 +23,20 @@ const Table = ({ rows, headers, scrollable, sticky }) => {
     setFirstRowIndex
   } = useContext(PaginationContext);
 
-  console.log(searchTerm);
+  const [windowHeight, setWindowHeight] = useState(null);
+  const [bounding, setBounding] = useState(0);
+
+  const ref = useRef();
+
+  useEffect(() => {
+    if (!ref.current) {
+      ref.current = false;
+    } else {
+      const b = ref.current.getBoundingClientRect();
+      setBounding(b);
+    }
+  }, []);
+
   const getResults = () => {
     const mapped = searchTerm.map(search => search[selectValue]);
 
@@ -78,43 +94,57 @@ const Table = ({ rows, headers, scrollable, sticky }) => {
   });
 
   return (
-    <div className="component__container--table">
-      <div
-        className={
-          toggle ? "table__container table-filter--is-open" : "table__container"
-        }
-      >
-        <div className={tableStyles}>
-          <table
-            role="table"
-            summary="A list of resources listed on your ibm cloud account"
-            className="bx--data-table bx--data-table--no-border"
-          >
-            <thead>{theadMarkup}</thead>
-            <tbody>{tbodyMarkup}</tbody>
-          </table>
+    <WindowSizeListener
+      onResize={windowSize => {
+        setWindowHeight(windowSize.windowHeight);
+      }}
+    >
+      <div className="component__container--table" ref={ref}>
+        <div
+          className={
+            toggle
+              ? "table__container table-filter--is-open"
+              : "table__container"
+          }
+        >
+          <div className={tableStyles}>
+            <table
+              role="table"
+              summary="A list of resources listed on your ibm cloud account"
+              className="bx--data-table bx--data-table--no-border"
+            >
+              <thead>{theadMarkup}</thead>
+              <tbody>{tbodyMarkup}</tbody>
+            </table>
+          </div>
+          <Pagination
+            totalItems={totalItems}
+            backwardText="Previous page"
+            forwardText="Next page"
+            pageSize={currentPageSize}
+            pageSizes={[5, 10, 15, 25]}
+            itemsPerPageText="Items per page"
+            onChange={({ page, pageSize }) => {
+              if (pageSize !== currentPageSize) {
+                setCurrentPageSize(pageSize);
+              }
+              if (bounding.bottom > windowHeight) {
+                console.log("Yup");
+              } else {
+                console.log("Nope");
+              }
+              console.log(bounding.bottom);
+              console.log(windowHeight);
+              setFirstRowIndex(pageSize * (page - 1));
+            }}
+          />
         </div>
-        <Pagination
-          className={toggle ? "table-filter--is-open--pagination" : ""}
-          totalItems={totalItems}
-          backwardText="Previous page"
-          forwardText="Next page"
-          pageSize={currentPageSize}
-          pageSizes={[5, 10, 15, 25]}
-          itemsPerPageText="Items per page"
-          onChange={({ page, pageSize }) => {
-            if (pageSize !== currentPageSize) {
-              setCurrentPageSize(pageSize);
-            }
-            setFirstRowIndex(pageSize * (page - 1));
-          }}
-        />
-      </div>
 
-      <div className={filterStyles}>
-        <SideFilter rows={rows} />
+        <div className={filterStyles}>
+          <SideFilter rows={rows} />
+        </div>
       </div>
-    </div>
+    </WindowSizeListener>
   );
 };
 
