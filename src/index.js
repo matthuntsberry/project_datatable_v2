@@ -11,14 +11,11 @@ import "core-js/modules/es7.object.values";
 
 import "./scss/vendors/carbon.scss";
 import App from "./components/App";
-import { StateContext } from "./context/SideFilterContext";
 
 ReactDOM.render(
-  // <StateContext>
   <Router>
     <App />
   </Router>,
-  // </StateContext>,
 
   document.getElementById("root")
 );

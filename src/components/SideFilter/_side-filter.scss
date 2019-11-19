@@ -28,7 +28,7 @@
 .side-filter__container {
   display: grid;
   position: relative;
-  width: 256px;
+  width: 224px;
   height: 100%;
   transition: transform 0.2s;
 }
@@ -49,8 +49,8 @@
 }
 
 .table-filter--is-open {
-  margin-right: 256px;
-  box-shadow: 4px 0 8px 0 rgba(0, 0, 0, 0.1);
+  margin-right: 224px;
+  border-right: 1px solid #dcdcdc;
 }
 
 .multiselect__container {
@@ -61,12 +61,13 @@
 .side-filter__heading-container {
   display: flex;
   justify-content: space-between;
+  height: 24px;
   padding: 16px;
   padding-bottom: 0;
-  height: 24px;
 }
 
 .side-filter__button--close {
+  height: 24px;
   border: 0;
   background-color: #fff;
   cursor: pointer;
@@ -74,7 +75,7 @@
 
 .button__container--filter-actions {
   display: grid;
-  align-content: end;
   grid-template-columns: 1fr 1fr;
+  align-content: end;
   width: 100%;
 }

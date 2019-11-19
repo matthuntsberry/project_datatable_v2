@@ -1,24 +1,13 @@
-import React, { useState, useContext } from "react";
-// import { Pagination } from "carbon-components-react";
-import { SideFilterContext } from "../../context/SideFilterContext";
-import { PaginationContext } from "../../context/PaginationContext";
+import React, { useContext } from "react";
+import { PaginationContext } from "../../context";
 import Table from "../../components/Tables";
 import TableToolBar from "../../components/TableToolBar";
 import PageHeader from "../../components/PageHeader";
 import db from "../../db/db";
 
 const DetailsPage = () => {
+  const { firstRowIndex, currentPageSize } = useContext(PaginationContext);
   let { headers, rows } = db;
-  const { toggle, setToggle } = useContext(SideFilterContext);
-  const {
-    totalItems,
-    firstRowIndex,
-    setFirstRowIndex,
-    currentPageSize,
-    setCurrentPageSize
-  } = useContext(PaginationContext);
-
-  const [pills, setPills] = useState([]);
 
   return (
     <div className="details-page">
@@ -31,14 +20,6 @@ const DetailsPage = () => {
         <Table
           headers={headers}
           rows={rows.slice(firstRowIndex, firstRowIndex + currentPageSize)}
-          toggle={toggle}
-          setToggle={setToggle}
-          pills={pills}
-          setPills={setPills}
-          totalItems={totalItems}
-          currentPageSize={currentPageSize}
-          setCurrentPageSize={setCurrentPageSize}
-          setFirstRowIndex={setFirstRowIndex}
           scrollable
           sticky
         />

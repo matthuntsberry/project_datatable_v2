@@ -1,7 +1,5 @@
 .table-component__container {
   padding-bottom: $spacing-07;
-
-  overflow: hidden;
 }
 
 .component__container--table {
@@ -44,24 +42,22 @@
 th.col-header--sticky:first-child,
 th.row-header--sticky:first-child {
   background-color: #fff;
+  box-shadow: 0;
 
   @include medium {
     position: sticky;
+    z-index: 2;
     left: 0;
+    box-shadow: 4px 0 8px 0 rgba(0, 0, 0, 0.1);
   }
 
   @include large {
-    box-shadow: none;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   }
 }
 
 th.col-header--sticky:first-child {
   background-color: #dcdcdc;
-}
-
-th.row-header--sticky:first-child {
-  // TODO Possibly make shadow only on tablet breakpoint
-  box-shadow: 4px 0 8px 0 rgba(0, 0, 0, 0.1);
 }
 
 td.table-cell {

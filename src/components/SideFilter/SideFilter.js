@@ -1,12 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Close16 } from "@carbon/icons-react";
 import { Button, MultiSelect } from "carbon-components-react";
-import { SideFilterContext } from "../../context/SideFilterContext";
-import { TableToolBarContext } from "../../context/TableToolBarContext";
+import {
+  SideFilterContext,
+  TableToolBarContext,
+  TableContext
+} from "../../context";
 
-const Filter = ({ setSearchTerm, setSelectValue, rows }) => {
-  const { handleToggleClick } = useContext(SideFilterContext);
+const Filter = ({ rows }) => {
+  const { toggle, setToggle } = useContext(SideFilterContext);
   const { setPills } = useContext(TableToolBarContext);
+  const { setSearchTerm, setSelectValue } = useContext(TableContext);
 
   const handleChange = (evt, selectValue) => {
     setSelectValue(selectValue);
@@ -15,17 +19,22 @@ const Filter = ({ setSearchTerm, setSelectValue, rows }) => {
   };
 
   const handleSelectClick = evt => {
-    console.log("clicked");
     evt.preventDefault();
     setSelectValue("");
     setSearchTerm([]);
   };
 
-  // const handleToggleClick = evt => {
-  //   setToggle(!toggle);
-  //   console.log(toggle);
-  // };
+  const handleToggleClick = () => {
+    setToggle(!toggle);
+  };
 
+  /**
+   * This function is used to remove all the
+   * duplicate values given to a Multiselect
+   * so that only one item name appears
+   * @param arr
+   * @param key
+   */
   function uniqBy(arr, key) {
     // return only your given key
     const mapped = arr.map(item => {
@@ -38,6 +47,13 @@ const Filter = ({ setSearchTerm, setSelectValue, rows }) => {
     return constructMultiSelectItemsArr(uniq, key);
   }
 
+  /**
+   * this function is used to create an
+   * array of object which is the type of
+   * data set the multiselect expects
+   * @param arr
+   * @param key
+   */
   function constructMultiSelectItemsArr(arr, key) {
     const newArr = [];
 

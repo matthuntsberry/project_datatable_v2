@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { Content } from "carbon-components-react/lib/components/UIShell";
 import Loadable from "react-loadable";

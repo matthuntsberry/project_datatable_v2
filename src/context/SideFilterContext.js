@@ -5,14 +5,8 @@ export const SideFilterContext = createContext();
 function SideFilterContextProvider(props) {
   const [toggle, setToggle] = useState(false);
 
-  const handleToggleClick = () => {
-    setToggle(!toggle);
-  };
-
   return (
-    <SideFilterContext.Provider
-      value={{ toggle, setToggle, handleToggleClick }}
-    >
+    <SideFilterContext.Provider value={{ toggle, setToggle }}>
       {props.children}
     </SideFilterContext.Provider>
   );

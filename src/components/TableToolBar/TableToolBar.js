@@ -6,16 +6,27 @@ import {
   Settings16,
   Close16
 } from "@carbon/icons-react";
-import { SideFilterContext } from "../../context/SideFilterContext";
-import { TableToolBarContext } from "../../context/TableToolBarContext";
+
+import {
+  SideFilterContext,
+  TableToolBarContext,
+  TableContext
+} from "../../context";
 
 const TableToolBar = () => {
   const { toggle, setToggle } = useContext(SideFilterContext);
   const { pills, setPills, input, setInput } = useContext(TableToolBarContext);
+  const { setSearchTerm } = useContext(TableContext);
 
   const handleKeyDown = evt => {
     // add a new pill
     if (evt.key === "Enter" && input.length > 0) {
+      const searchArr = [];
+      const search = evt.target.value;
+
+      searchArr.push(search);
+      setSearchTerm(searchArr);
+
       setPills([...pills, input]);
       setInput("");
       return;
@@ -59,7 +70,7 @@ const TableToolBar = () => {
           onKeyDown={handleKeyDown}
         />
       </div>
-      <div>
+      <div className="button__container--table-actions">
         <Button
           className="bx--btn bx--btn--ghost"
           onClick={() => {

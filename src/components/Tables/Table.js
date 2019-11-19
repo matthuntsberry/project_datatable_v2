@@ -6,15 +6,13 @@ import SideFilter from "../../components/SideFilter";
 import {
   TableContext,
   PaginationContext,
-  TableToolBarContext,
   SideFilterContext
 } from "../../context";
 
 const Table = ({ rows, headers, scrollable, sticky }) => {
-  const { searchTerm, setSearchTerm, selectValue, setSelectValue } = useContext(
-    TableContext
-  );
-
+  // destructure all needed contexts
+  const { searchTerm, selectValue } = useContext(TableContext);
+  const { toggle } = useContext(SideFilterContext);
   const {
     totalItems,
     currentPageSize,
@@ -22,11 +20,10 @@ const Table = ({ rows, headers, scrollable, sticky }) => {
     setFirstRowIndex
   } = useContext(PaginationContext);
 
-  const { pills, setPills } = useContext(TableToolBarContext);
-  const { toggle, setToggle } = useContext(SideFilterContext);
-
+  console.log(searchTerm);
   const getResults = () => {
     const mapped = searchTerm.map(search => search[selectValue]);
+
     const newArr = [];
 
     rows.forEach(row => {
@@ -115,15 +112,7 @@ const Table = ({ rows, headers, scrollable, sticky }) => {
       </div>
 
       <div className={filterStyles}>
-        <SideFilter
-          rows={rows}
-          toggle={toggle}
-          setToggle={setToggle}
-          setSearchTerm={setSearchTerm}
-          setSelectValue={setSelectValue}
-          pills={pills}
-          setPills={setPills}
-        />
+        <SideFilter rows={rows} />
       </div>
     </div>
   );

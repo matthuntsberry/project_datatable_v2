@@ -1,16 +1,22 @@
 .component__container--table-toolbar {
   display: grid;
-  grid-template-columns: 1fr auto;
   margin: 0;
+
+  @include medium {
+    grid-template-columns: 1fr auto;
+  }
 }
 
 .component__container--toolbar-search {
   display: grid;
-  grid-template-columns: auto minmax(200px, 1fr);
+  grid-template-columns: auto 1fr;
+  @include medium {
+    grid-template-columns: auto minmax(200px, 1fr);
+  }
 }
 
-.search__component {
-  // min-width: 500px;
+.button__container--table-actions {
+  justify-self: end;
 }
 
 .pills {
