@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-
 import { PaginationContext } from "../../context";
 import Table from "../../components/Tables";
 import TableToolBar from "../../components/TableToolBar";
@@ -12,19 +11,15 @@ const DetailsPage = () => {
 
   return (
     <div className="details-page">
-      <div className="">
-        <PageHeader title="Details" />
-      </div>
+      <PageHeader title="Details" />
 
-      <div className="table-component__container">
-        <TableToolBar />
-        <Table
-          headers={headers}
-          rows={rows.slice(firstRowIndex, firstRowIndex + currentPageSize)}
-          scrollable
-          sticky
-        />
-      </div>
+      <TableToolBar />
+      <Table
+        headers={headers}
+        rows={rows.slice(firstRowIndex, firstRowIndex + currentPageSize)}
+        scrollable
+        stickyColumn
+      />
     </div>
   );
 };

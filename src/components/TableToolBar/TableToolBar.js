@@ -64,6 +64,7 @@ const TableToolBar = () => {
         </div>
         <Search
           type="text"
+          labelText=""
           className="search__component"
           value={input}
           onChange={evt => setInput(evt.target.value)}

@@ -5,7 +5,7 @@ export const PaginationContext = createContext();
 function PaginationContextProvider(props) {
   const [totalItems] = useState(100);
   const [firstRowIndex, setFirstRowIndex] = useState(0);
-  const [currentPageSize, setCurrentPageSize] = useState(5);
+  const [currentPageSize, setCurrentPageSize] = useState(10);
 
   return (
     <PaginationContext.Provider

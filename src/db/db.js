@@ -4,8 +4,6 @@ import ActionButton from "../components/ActionButton";
 import { makeAnIP, randomNumberGenerator } from "../helpers/ipGenerator";
 import randomDate from "../helpers/dateGenerator";
 
-console.log(randomDate(new Date(2017, 0, 1), new Date()));
-
 const headers = [
   {
     key: "name",

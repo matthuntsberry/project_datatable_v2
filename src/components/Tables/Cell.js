@@ -1,21 +1,23 @@
 import React from "react";
+import classNames from "classnames";
+import { uid } from "react-uid";
 
-const Cell = ({ content, header, sticky, headerIndex }) => {
+const Cell = ({ content, header, stickyColumn, headerIndex }) => {
+  const headerStyles = classNames({
+    "table__header--sticky-column": stickyColumn
+  });
+
   const cellMarkup = header ? (
     <>
       {/* If first column in data table give it these classes */}
       {headerIndex === 0 ? (
-        <th
-          role="columnheader"
-          className={sticky && "col-header--sticky"}
-          scope="col"
-        >
+        <th role="columnheader" scope="col" className={headerStyles}>
           <span role="heading" className="bx--table-header-label">
             {content}
           </span>
         </th>
       ) : (
-        <th role="columnheader" scope="col">
+        <th role="columnheader" scope="col" className={headerStyles}>
           <span role="heading" className="bx--table-header-label">
             {content}
           </span>
@@ -30,15 +32,15 @@ const Cell = ({ content, header, sticky, headerIndex }) => {
           {/* If first column in data table give it these classes */}
           {i === 0 ? (
             <th
+              key={uid(value)}
               role="rowheader"
-              className={sticky && "table-cell row-header--sticky"}
+              className={stickyColumn && "table__row--sticky-column"}
               scope="row"
-              key={i}
             >
               {value}
             </th>
           ) : (
-            <td role="cell" className="table-cell" key={i}>
+            <td role="cell" className="table-cell">
               {value}
             </td>
           )}
