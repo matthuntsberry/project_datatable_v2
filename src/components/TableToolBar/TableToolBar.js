@@ -73,7 +73,7 @@ const TableToolBar = () => {
       </div>
       <div className="button__container--table-actions">
         <Button
-          className="bx--btn bx--btn--ghost"
+          className="bx--btn bx--btn--ghost button--filter"
           onClick={() => {
             setToggle(!toggle);
           }}
@@ -83,7 +83,7 @@ const TableToolBar = () => {
         <Button className="bx--btn bx--btn--ghost button--renew">
           <Renew16 />
         </Button>
-        <Button className="bx--btn bx--btn--ghost">
+        <Button className="bx--btn bx--btn--ghost button--settings">
           <Settings16 />
         </Button>
       </div>

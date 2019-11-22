@@ -1,10 +1,7 @@
 .component__container--table-toolbar {
   display: grid;
+  grid-template-columns: 1fr auto;
   margin: 0;
-
-  @include medium {
-    grid-template-columns: 1fr auto;
-  }
 }
 
 .component__container--toolbar-search {
@@ -17,6 +14,15 @@
 
 .button__container--table-actions {
   justify-self: end;
+}
+
+.button--renew,
+.button--settings {
+  display: none;
+
+  @include medium {
+    display: inline;
+  }
 }
 
 .pills {
