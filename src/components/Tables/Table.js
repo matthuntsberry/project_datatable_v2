@@ -31,8 +31,8 @@ const Table = ({ rows, headers, scrollable, stickyColumn }) => {
   const [toggleStickyHeader, setToggleStickyHeader] = useState(false);
   const [toggleStickyPagination, setToggleStickyPagination] = useState(false);
   const [elementDimensions, setElementDimensions] = useState({
-    width: 0,
-    height: 0
+    width: null,
+    height: null
   });
   const [updatedElementDimensions, updateElementDimensions] = useState({
     width: elementDimensions.width,
