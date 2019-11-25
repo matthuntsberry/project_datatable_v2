@@ -1,14 +1,10 @@
-import React, {
-  useState,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useContext
-} from "react";
+// Third Party Packages
+import React, { useState, useLayoutEffect, useRef, useContext } from "react";
 import classNames from "classnames";
 import { uid } from "react-uid";
 import { Pagination } from "carbon-components-react";
-import { useWindowDimensions } from "../../hooks/useWindowDimensions";
+
+// My Imports
 import Cell from "./Cell";
 import SideFilter from "../../components/SideFilter";
 import {
@@ -16,9 +12,14 @@ import {
   PaginationContext,
   SideFilterContext
 } from "../../context";
+import { useWindowDimensions } from "../../hooks/useWindowDimensions";
+import {
+  useElementDimensions,
+  getElementDimensions
+} from "../../hooks/useElementDimensions";
 
 const Table = ({ rows, headers, scrollable, stickyColumn }) => {
-  // destructure all needed contexts
+  // Contexts - destructure all needed contexts
   const { searchTerm, selectValue } = useContext(TableContext);
   const { toggle } = useContext(SideFilterContext);
   const {
@@ -28,38 +29,20 @@ const Table = ({ rows, headers, scrollable, stickyColumn }) => {
     setFirstRowIndex
   } = useContext(PaginationContext);
 
-  const { width: windowWidth, height: windowHeight } = useWindowDimensions();
-  console.log("windowWidth:", windowWidth);
-  console.log("windowHeight:", windowHeight);
-
-  // const [windowDimensions, setWindowHeight] = useState({
-  //   height: window.innerHeight,
-  //   width: window.innerWidth
-  // });
+  // State
+  const [updatedElementDimensions, updateElementDimensions] = useState({});
   const [toggleStickyHeader, setToggleStickyHeader] = useState(false);
   const [toggleStickyPagination, setToggleStickyPagination] = useState(false);
-  const [elementDimensions, setElementDimensions] = useState({
-    width: null,
-    height: null
-  });
-  const [updatedElementDimensions, updateElementDimensions] = useState({
-    width: elementDimensions.width,
-    height: elementDimensions.height
-  });
 
-  // Used to target which DOM element we want to reference
+  // Ref - Used to target which DOM element we want to reference / Keep track
   const targetRef = useRef();
 
-  // helper function to get the targeted elems
-  // initial dimension
-  const fetchDimensions = () => {
-    if (targetRef.current) {
-      setElementDimensions({
-        width: targetRef.current.offsetWidth,
-        height: targetRef.current.offsetHeight
-      });
-    }
-  };
+  // Hooks
+  const { height: windowHeight } = useWindowDimensions();
+  const { height: elementHeight } = useElementDimensions(
+    targetRef,
+    updatedElementDimensions
+  );
 
   // Checks if reference element scrolls above
   // top of viewport
@@ -68,29 +51,18 @@ const Table = ({ rows, headers, scrollable, stickyColumn }) => {
     return bounding.top <= 48;
   };
 
-  // first sets / measures the targeted elements
-  // dimensions
-  useEffect(
-    () => {
-      fetchDimensions();
-    },
-    // runs only on intial render
-    // rerenders only when element in array
-    // is updated
-    [updatedElementDimensions]
-  );
-
   // This is used specifically for layout measurements.
   // We want to know when the targeted element exceeds the bottom of the
   // viewport and update the state
   useLayoutEffect(
     () => {
-      // TODO Sticky footer doesn't update when window is resized on
-      // todo first render
+      // Call getElements to set targetRef.current
+      // else ref is undefined
+      getElementDimensions(targetRef);
 
       // subtract the height of the pageheader (242)
-      if (windowHeight - 242 < elementDimensions.height) {
-        console.log("true");
+
+      if (windowHeight - 242 < elementHeight) {
         setToggleStickyPagination(true);
       } else {
         setToggleStickyPagination(false);
@@ -108,9 +80,9 @@ const Table = ({ rows, headers, scrollable, stickyColumn }) => {
     // only rerender if one these variables updates
     [
       windowHeight,
-      elementDimensions.height,
-      elementDimensions.top,
-      elementDimensions.bottom,
+      elementHeight,
+      // elementDimensions.top,
+      // elementDimensions.bottom,
       toggleStickyPagination,
       toggleStickyHeader
     ]
@@ -159,7 +131,6 @@ const Table = ({ rows, headers, scrollable, stickyColumn }) => {
       </tr>
     );
   };
-
   const tbodyMarkup = results.map(row => renderRow(row));
 
   //  Dynamic Styles
@@ -209,7 +180,7 @@ const Table = ({ rows, headers, scrollable, stickyColumn }) => {
             setFirstRowIndex(pageSize * (page - 1));
 
             // used to update the element dimensions,
-            // but its real purpose is to case a rerender
+            // but its real purpose is to cause a rerender
             // on useEffect.  We use this second set of Element
             // dimension instead of setElementDimension because
             // when the original is called in use effect it cause
