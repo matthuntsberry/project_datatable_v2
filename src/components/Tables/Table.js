@@ -194,7 +194,7 @@ const Table = ({ rows, headers, scrollable, stickyColumn }) => {
       </div>
 
       <div className={filterStyles}>
-        <SideFilter rows={rows} />
+        <SideFilter rows={rows} tableHeight={elementHeight} />
       </div>
     </div>
   );
