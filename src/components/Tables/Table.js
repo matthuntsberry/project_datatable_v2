@@ -8,6 +8,7 @@ import React, {
 import classNames from "classnames";
 import { uid } from "react-uid";
 import { Pagination } from "carbon-components-react";
+import { useWindowDimensions } from "../../hooks/useWindowDimensions";
 import Cell from "./Cell";
 import SideFilter from "../../components/SideFilter";
 import {
@@ -27,7 +28,14 @@ const Table = ({ rows, headers, scrollable, stickyColumn }) => {
     setFirstRowIndex
   } = useContext(PaginationContext);
 
-  const [windowHeight] = useState(window.innerHeight);
+  const { width: windowWidth, height: windowHeight } = useWindowDimensions();
+  console.log("windowWidth:", windowWidth);
+  console.log("windowHeight:", windowHeight);
+
+  // const [windowDimensions, setWindowHeight] = useState({
+  //   height: window.innerHeight,
+  //   width: window.innerWidth
+  // });
   const [toggleStickyHeader, setToggleStickyHeader] = useState(false);
   const [toggleStickyPagination, setToggleStickyPagination] = useState(false);
   const [elementDimensions, setElementDimensions] = useState({
@@ -79,8 +87,10 @@ const Table = ({ rows, headers, scrollable, stickyColumn }) => {
     () => {
       // TODO Sticky footer doesn't update when window is resized on
       // todo first render
+
       // subtract the height of the pageheader (242)
       if (windowHeight - 242 < elementDimensions.height) {
+        console.log("true");
         setToggleStickyPagination(true);
       } else {
         setToggleStickyPagination(false);
