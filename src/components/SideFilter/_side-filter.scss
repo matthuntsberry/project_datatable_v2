@@ -27,8 +27,8 @@
 
 .side-filter__container {
   display: grid;
-  grid-template-rows: 1fr 200px 1fr;
   position: relative;
+  grid-template-rows: 1fr 200px 1fr;
   width: 224px;
   min-height: 100%;
   transition: transform 0.2s;
@@ -76,12 +76,12 @@
 .side-filter__heading-container {
   display: flex;
   position: sticky;
+  z-index: 3;
   top: 0;
   justify-content: space-between;
   height: 24px;
   padding: 16px;
   padding-bottom: 0;
-  z-index: 3;
 }
 
 .side-filter__button--close {

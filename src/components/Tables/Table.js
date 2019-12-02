@@ -31,7 +31,6 @@ const Table = ({ rows, headers, scrollable, stickyColumn }) => {
 
   // State
   const [updatedElementDimensions, updateElementDimensions] = useState({});
-  const [toggleStickyHeader, setToggleStickyHeader] = useState(false);
   const [toggleStickyPagination, setToggleStickyPagination] = useState(false);
 
   // Ref - Used to target which DOM element we want to reference / Keep track
@@ -43,13 +42,6 @@ const Table = ({ rows, headers, scrollable, stickyColumn }) => {
     targetRef,
     updatedElementDimensions
   );
-
-  // Checks if reference element scrolls above
-  // top of viewport
-  const isInViewport = elem => {
-    const bounding = elem.getBoundingClientRect();
-    return bounding.top <= 48;
-  };
 
   // This is used specifically for layout measurements.
   // We want to know when the targeted element exceeds the bottom of the
@@ -67,25 +59,9 @@ const Table = ({ rows, headers, scrollable, stickyColumn }) => {
       } else {
         setToggleStickyPagination(false);
       }
-
-      // TODO Make sticky header stick to top of veiwport when
-      // they come into contact
-      const applyStickyHeader = () =>
-        isInViewport(targetRef.current)
-          ? setToggleStickyHeader(true)
-          : setToggleStickyHeader(false);
-
-      window.addEventListener("scroll", applyStickyHeader);
     },
     // only rerender if one these variables updates
-    [
-      windowHeight,
-      elementHeight,
-      // elementDimensions.top,
-      // elementDimensions.bottom,
-      toggleStickyPagination,
-      toggleStickyHeader
-    ]
+    [windowHeight, elementHeight, toggleStickyPagination]
   );
 
   const getResults = () => {
@@ -133,7 +109,7 @@ const Table = ({ rows, headers, scrollable, stickyColumn }) => {
   };
   const tbodyMarkup = results.map(row => renderRow(row));
 
-  //  Dynamic Styles
+  //  Dynamic Styles based on props
   const tableStyles = classNames({
     "table--scroll-x": scrollable,
     "table--sticky-scroll": scrollable && stickyColumn

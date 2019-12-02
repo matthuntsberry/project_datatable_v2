@@ -9,6 +9,7 @@ import {
 } from "../../context";
 
 const Filter = ({ rows, tableHeight }) => {
+  // add in styles for side filter based on browser height
   const dynamicFilterStyles = classNames({
     "side-filter__container": true,
     "side-filter__container height--small": tableHeight < 596,
@@ -16,7 +17,6 @@ const Filter = ({ rows, tableHeight }) => {
     "side-filter__container height--large": tableHeight > 596
   });
 
-  console.log(tableHeight);
   const { toggle, setToggle } = useContext(SideFilterContext);
   const { setPills } = useContext(TableToolBarContext);
   const { setSearchTerm, setSelectValue } = useContext(TableContext);
@@ -51,13 +51,9 @@ const Filter = ({ rows, tableHeight }) => {
     return constructMultiSelectItemsArr(uniq, key);
   }
 
-  /**
-   * this function is used to create an
-   * array of object which is the type of
-   * data set the multiselect expects
-   * @param arr
-   * @param key
-   */
+  // this function is used to create an
+  // array of objects which is the type of
+  // dataset the multiselect component expects
   function constructMultiSelectItemsArr(arr, key) {
     const newArr = [];
 
@@ -73,7 +69,6 @@ const Filter = ({ rows, tableHeight }) => {
 
   return (
     <div className={dynamicFilterStyles}>
-      {/* <div className="side-filter__container"> */}
       <div className="side-filter__heading-container">
         <h6 className="filter__title">Filter</h6>
         <button
