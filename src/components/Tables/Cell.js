@@ -17,7 +17,7 @@ const Cell = ({ content, header, stickyColumn, headerIndex }) => {
           </span>
         </th>
       ) : (
-        <th role="columnheader" scope="col" className={headerStyles}>
+        <th role="columnheader" scope="col">
           <span role="heading" className="bx--table-header-label">
             {content}
           </span>
