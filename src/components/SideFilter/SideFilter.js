@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { Close16 } from "@carbon/icons-react";
 import { Button, MultiSelect } from "carbon-components-react";
+import classNames from "classnames";
 import {
   SideFilterContext,
   TableToolBarContext,
   TableContext
 } from "../../context";
 
-<<<<<<< HEAD
 const Filter = ({ rows, tableHeight }) => {
   // add in styles for side filter based on browser height
   const dynamicFilterStyles = classNames({
@@ -17,9 +17,6 @@ const Filter = ({ rows, tableHeight }) => {
     "side-filter__container height--large": tableHeight > 596
   });
 
-=======
-const Filter = ({ rows }) => {
->>>>>>> parent of c077476... started sitting a height on the sidefilter container
   const { toggle, setToggle } = useContext(SideFilterContext);
   const { setPills } = useContext(TableToolBarContext);
   const { setSearchTerm, setSelectValue } = useContext(TableContext);
@@ -76,11 +73,7 @@ const Filter = ({ rows }) => {
   }
 
   return (
-<<<<<<< HEAD
     <div className={dynamicFilterStyles}>
-=======
-    <div className="side-filter__container">
->>>>>>> parent of c077476... started sitting a height on the sidefilter container
       <div className="side-filter__heading-container">
         <h6 className="filter__title">Filter</h6>
         <button
