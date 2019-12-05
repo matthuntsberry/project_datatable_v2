@@ -47,8 +47,8 @@ const Table = ({ rows, headers, scrollable, stickyColumn }) => {
   // Hooks
   const { height: windowHeight } = useWindowDimensions();
   const { height: elementHeight } = useElementDimensions(
-    componentContainerTableRef,
-    [updatedElementDimensions, tableRef]
+    tableRef,
+    updatedElementDimensions
   );
 
   // This is used specifically for layout measurements.
