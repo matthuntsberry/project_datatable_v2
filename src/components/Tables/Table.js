@@ -1,5 +1,11 @@
 // Third Party Packages
-import React, { useState, useLayoutEffect, useRef, useContext } from "react";
+import React, {
+  useState,
+  useLayoutEffect,
+  useEffect,
+  useRef,
+  useContext
+} from "react";
 import classNames from "classnames";
 import { uid } from "react-uid";
 import { Pagination } from "carbon-components-react";
@@ -32,15 +38,17 @@ const Table = ({ rows, headers, scrollable, stickyColumn }) => {
   // State
   const [updatedElementDimensions, updateElementDimensions] = useState({});
   const [toggleStickyPagination, setToggleStickyPagination] = useState(false);
+  const [toggleStickyHeader, setToggleStickyHeader] = useState(false);
 
   // Ref - Used to target which DOM element we want to reference / Keep track
-  const targetRef = useRef();
+  const componentContainerTableRef = useRef();
+  const tableRef = useRef();
 
   // Hooks
   const { height: windowHeight } = useWindowDimensions();
   const { height: elementHeight } = useElementDimensions(
-    targetRef,
-    updatedElementDimensions
+    componentContainerTableRef,
+    [updatedElementDimensions, tableRef]
   );
 
   // This is used specifically for layout measurements.
@@ -48,20 +56,29 @@ const Table = ({ rows, headers, scrollable, stickyColumn }) => {
   // viewport and update the state
   useLayoutEffect(
     () => {
-      // Call getElements to set targetRef.current
+      // Call getElements to set componentContainerTableRef.current
       // else ref is undefined
-      getElementDimensions(targetRef);
+      getElementDimensions(componentContainerTableRef);
 
       // subtract the height of the pageheader (242)
 
       if (windowHeight - 242 < elementHeight) {
+        tableRef.current.setAttribute(
+          "style",
+          `height: ${windowHeight - 295}px`
+        );
         setToggleStickyPagination(true);
+        setToggleStickyHeader(true);
+        console.log(toggleStickyHeader);
       } else {
         setToggleStickyPagination(false);
+        console.log(toggleStickyHeader);
+        tableRef.current.removeAttribute("style");
+        setToggleStickyHeader(false);
       }
     },
     // only rerender if one these variables updates
-    [windowHeight, elementHeight, toggleStickyPagination]
+    [windowHeight, elementHeight, toggleStickyPagination, toggleStickyHeader]
   );
 
   const getResults = () => {
@@ -125,13 +142,16 @@ const Table = ({ rows, headers, scrollable, stickyColumn }) => {
   });
 
   return (
-    <div className="component__container--table" ref={targetRef}>
+    <div
+      className="component__container--table"
+      ref={componentContainerTableRef}
+    >
       <div
         className={
           toggle ? "table__container table-filter--is-open" : "table__container"
         }
       >
-        <div className={tableStyles}>
+        <div className={tableStyles} ref={tableRef}>
           <table
             role="table"
             summary="A list of resources listed on your ibm cloud account"
@@ -162,8 +182,8 @@ const Table = ({ rows, headers, scrollable, stickyColumn }) => {
             // when the original is called in use effect it cause
             // a stackoverflow of rerenders.
             updateElementDimensions({
-              width: targetRef.current.offsetWidth,
-              height: targetRef.current.offsetHeight
+              width: componentContainerTableRef.current.offsetWidth,
+              height: componentContainerTableRef.current.offsetHeight
             });
           }}
         />
