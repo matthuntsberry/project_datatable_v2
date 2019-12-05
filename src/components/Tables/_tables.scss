@@ -44,7 +44,7 @@ th.table__row--sticky-column:first-child {
     position: sticky;
     z-index: 3;
     left: 0;
-    box-shadow: 4px 0 8px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 0 1px 0 rgba(0, 0, 0, 0.1);
   }
 
   @include large {
