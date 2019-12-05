@@ -4,12 +4,6 @@
   }
 }
 
-@mixin small-height {
-  @media (min-height: #{$small-width}) and (max-height: #{$medium-height - 1px}) {
-    @content;
-  }
-}
-
 @mixin medium {
   @media (min-width: #{$medium-width}) {
     @content;
