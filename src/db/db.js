@@ -4,44 +4,54 @@ import ActionButton from "../components/ActionButton";
 import { makeAnIP, randomNumberGenerator } from "../helpers/ipGenerator";
 import randomDate from "../helpers/dateGenerator";
 
+// const headers = [
+//   {
+//     key: "name",
+//     header: "Name"
+//   },
+//   // {
+//   //   key: "label",
+//   //   header: ""
+//   // },
+//   {
+//     key: "type",
+//     header: "Type"
+//   },
+//   {
+//     key: "location",
+//     header: "Location"
+//   },
+//   {
+//     key: "publicIp",
+//     header: "Public IP"
+//   },
+//   {
+//     key: "privateIp",
+//     header: "Private IP"
+//   },
+//   {
+//     key: "startDate",
+//     header: "Start Date"
+//   },
+//   {
+//     key: "action",
+//     header: ""
+//   }
+// ];
+
 const headers = [
-  {
-    key: "name",
-    header: "Name"
-  },
-  // {
-  //   key: "label",
-  //   header: ""
-  // },
-  {
-    key: "type",
-    header: "Type"
-  },
-  {
-    key: "location",
-    header: "Location"
-  },
-  {
-    key: "publicIp",
-    header: "Public IP"
-  },
-  {
-    key: "privateIp",
-    header: "Private IP"
-  },
-  {
-    key: "startDate",
-    header: "Start Date"
-  },
-  {
-    key: "action",
-    header: ""
-  }
+  "name",
+  "type",
+  "location",
+  "publicIp",
+  "privateIp",
+  "startDate",
+  "action"
 ];
 
 const rows = [
   {
-    id: nanoid(),
+    // // id: nanoid(),
     name: "SLADC232270-msf",
     // label: "SLADC232270-msf",
     type: "Virtual Server",

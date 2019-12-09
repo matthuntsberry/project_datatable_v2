@@ -13,7 +13,12 @@ const DetailsPage = () => {
   return (
     <div className="details-page">
       <PageHeader title="Details" />
-      <ResizeableTable />
+      <ResizeableTable
+        headers={headers}
+        rows={rows.slice(firstRowIndex, firstRowIndex + currentPageSize)}
+        scrollable
+        stickyColumn
+      />
       {/* <TableToolBar />
       <Table
         headers={headers}

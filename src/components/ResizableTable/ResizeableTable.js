@@ -1,182 +1,111 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import styled from "styled-components";
+import { uid } from "react-uid";
+import db from "../../db/db";
 
-const ResizeableTable = () => {
-  const tableRef = useRef();
+const ResizeableTable = ({ headers, rows: data }) => {
+  const [cols, setCols] = useState(headers);
+  const [rows, setRows] = useState(data);
+  const [dragOver, setDragOver] = useState("");
 
-  function resizeableGrid(table) {
-    if (table.current) {
-      let row = table.current.getElementsByTagName("tr")[0];
-      let cols = row ? row.children : undefined;
-      if (!cols) return;
-      for (let i = 0; i < cols.length; i++) {
-        let div = createDiv(table.current.offsetHeight);
-        cols[i].appendChild(div);
-        cols[i].style.position = "relative";
-        setListeners(div);
-      }
-    }
-  }
+  const handleDragStart = e => {
+    const { id } = e.target;
 
-  function createDiv(height) {
-    let div = document.createElement("div");
-    div.classList.add("column-resize");
+    const idx = cols.indexOf(id);
 
-    div.style.height = height + "px";
+    e.dataTransfer.setData("colIdx", idx);
+  };
 
-    return div;
-  }
+  const handleDragOver = e => e.preventDefault();
+  const handleDragEnter = e => {
+    const { id } = e.target;
+    setDragOver(id);
+  };
 
-  function setListeners(div) {
-    let pageX, currentCol, nextCol, currentColWidth, nextColWidth;
+  const handleOnDrop = e => {
+    const { id } = e.target;
+    const droppedColIdx = cols.indexOf(id);
+    const draggedColIdx = e.dataTransfer.getData("colIdx");
+    const tempCols = [...cols];
 
-    div.addEventListener("mousedown", e => {
-      currentCol = e.target.parentElement;
-      nextCol = currentCol.nexElementSibling;
-      pageX = e.pageX;
+    tempCols[draggedColIdx] = cols[droppedColIdx];
+    tempCols[droppedColIdx] = cols[draggedColIdx];
+    setCols(tempCols);
+    setDragOver("");
+  };
 
-      var padding = paddingDiff(currentCol);
-
-      currentColWidth = currentCol.offsetWidth - padding;
-      if (nextCol) {
-        nextColWidth = nextCol.offsetWidth - padding;
-      }
-    });
-
-    document.addEventListener("mousemove", e => {
-      if (currentCol) {
-        let diffX = e.pageX - pageX;
-
-        if (nextCol) {
-          nextCol.style.width = nextColWidth - diffX + "px";
-        }
-        currentCol.style.width = currentColWidth + diffX + "px";
-      }
-    });
-
-    document.addEventListener("mouseup", e => {
-      currentCol = undefined;
-      nextCol = undefined;
-      pageX = undefined;
-      nextColWidth = undefined;
-      currentColWidth = undefined;
-    });
-  }
-
-  function paddingDiff(col) {
-    if (getStyleVal(col, "box-sizing") == "border-box") {
-      return 0;
-    }
-
-    var padLeft = getStyleVal(col, "padding-left");
-    var padRight = getStyleVal(col, "padding-right");
-    return parseInt(padLeft) + parseInt(padRight);
-  }
-
-  function getStyleVal(elm, css) {
-    return window.getComputedStyle(elm, null).getPropertyValue(css);
-  }
-
-  useEffect(() => {
-    resizeableGrid(tableRef);
-  }, [tableRef]);
-
+  console.log();
   return (
-    <table className="bx--data-table" ref={tableRef}>
-      <thead>
-        <tr>
-          <th>
-            <span className="bx--table-header-label">Name</span>
-          </th>
-          <th>
-            <span className="bx--table-header-label">Protocol</span>
-          </th>
-          <th>
-            <span className="bx--table-header-label">Port</span>
-          </th>
-          <th>
-            <span className="bx--table-header-label">Rule</span>
-          </th>
-          <th>
-            <span className="bx--table-header-label">Attached Groups</span>
-          </th>
-          <th>
-            <span className="bx--table-header-label">Status</span>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Load Balancer 1</td>
+    <div className="App">
+      <table className="bx--data-table">
+        <thead>
+          <tr>
+            {cols.map(col => (
+              <th
+                id={col}
+                key={col}
+                draggable
+                onDragStart={handleDragStart}
+                onDragOver={handleDragOver}
+                onDrop={handleOnDrop}
+                onDragEnter={handleDragEnter}
+                dragOver={col === dragOver}
+              >
+                {console.log(rows)}
+                {col}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(row => (
+            <tr>
+              {Object.entries(row).map(([k, v], idx) => (
+                <td key={v} dragOver={cols[idx]}>
+                  {row[cols[idx]]}
+                </td>
+              ))}
+            </tr>
+            // <tr key={row.id}>
+            //   {Object.entries(row).map(([k, v], idx) => (
 
-          <td>HTTP</td>
-
-          <td>80</td>
-
-          <td>Round Robin</td>
-
-          <td>Maureen&#x27;s VM Groups Testing a really long text here</td>
-
-          <td>Active</td>
-        </tr>
-
-        <tr>
-          <td>Load Balancer 5</td>
-
-          <td>HTTP</td>
-
-          <td>80</td>
-
-          <td>Round Robin</td>
-
-          <td>Maureen&#x27;s VM Groups</td>
-
-          <td>Active</td>
-        </tr>
-
-        <tr>
-          <td>Load Balancer 5</td>
-
-          <td>HTTP</td>
-
-          <td>80</td>
-
-          <td>Round Robin</td>
-
-          <td>Maureen&#x27;s VM Groups</td>
-
-          <td>Active</td>
-        </tr>
-
-        <tr>
-          <td>Load Balancer 5</td>
-
-          <td>HTTP</td>
-
-          <td>80</td>
-
-          <td>Round Robin</td>
-
-          <td>Maureen&#x27;s VM Groups</td>
-
-          <td>Active</td>
-        </tr>
-
-        <tr>
-          <td>Load Balancer 5</td>
-
-          <td>HTTP</td>
-
-          <td>80</td>
-
-          <td>Round Robin</td>
-
-          <td>Maureen&#x27;s VM Groups</td>
-
-          <td>Active</td>
-        </tr>
-      </tbody>
-    </table>
+            //     <td key={v} dragOver={cols[idx] === dragOver}>
+            //       {row[cols[idx]]}
+            //     </td>
+            //   ))}
+            // </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
+
+// const Cell = styled.td`
+//   font-size: 14px;
+//   text-align: left;
+//   text-transform: capitalize;
+//   vertical-align: center;
+//   padding: 20px;
+//   color: black;
+//   border-bottom: 2px solid #eef0f5;
+//   text-transform: lowercase;
+//   border-left: ${({ dragOver }) => dragOver && "5px solid red"};
+// `;
+
+// const StyledTh = styled.th`
+//   white-space: nowrap;
+//   color: #716f88;
+//   letter-spacing: 1.5px;
+//   font-weight: 600;
+//   font-size: 14px;
+//   text-align: left;
+//   text-transform: capitalize;
+//   vertical-align: middle;
+//   padding: 20px;
+//   border-bottom: 2px solid #eef0f5;
+//   text-transform: uppercase;
+//   border-left: ${({ dragOver }) => dragOver && "5px solid red"};
+// `;
 
 export default ResizeableTable;
