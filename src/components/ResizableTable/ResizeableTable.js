@@ -11,7 +11,7 @@ const ResizeableTable = ({ headers, rows: data }) => {
   const handleDragStart = e => {
     const { id } = e.target;
 
-    const idx = cols.indexOf(id);
+    const idx = cols.findIndex(i => i.key === id);
 
     e.dataTransfer.setData("colIdx", idx);
   };
@@ -24,8 +24,11 @@ const ResizeableTable = ({ headers, rows: data }) => {
 
   const handleOnDrop = e => {
     const { id } = e.target;
-    const droppedColIdx = cols.indexOf(id);
+
+    const droppedColIdx = cols.findIndex(i => i.key === id);
+
     const draggedColIdx = e.dataTransfer.getData("colIdx");
+    // console.log(e.dataTransfer.getData("colIdx"));
     const tempCols = [...cols];
 
     tempCols[draggedColIdx] = cols[droppedColIdx];
@@ -34,47 +37,54 @@ const ResizeableTable = ({ headers, rows: data }) => {
     setDragOver("");
   };
 
-  console.log();
   return (
     <div className="App">
       <table className="bx--data-table">
         <thead>
           <tr>
-            {cols.map(col => (
+            {cols.map(({ key, header }) => (
               <th
-                id={col}
-                key={col}
+                id={key}
+                key={uid(key)}
                 draggable
                 onDragStart={handleDragStart}
                 onDragOver={handleDragOver}
                 onDrop={handleOnDrop}
                 onDragEnter={handleDragEnter}
-                dragOver={col === dragOver}
+                dragOver={key === dragOver}
               >
-                {console.log(rows)}
-                {col}
+                <span
+                  role="heading"
+                  id={key}
+                  key={uid(key)}
+                  draggable
+                  onDragStart={handleDragStart}
+                  onDragOver={handleDragOver}
+                  onDrop={handleOnDrop}
+                  onDragEnter={handleDragEnter}
+                  dragOver={key === dragOver}
+                  className="bx--table-header-label"
+                >
+                  {header}
+                </span>
               </th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {rows.map(row => (
-            <tr>
-              {Object.entries(row).map(([k, v], idx) => (
-                <td key={v} dragOver={cols[idx]}>
-                  {row[cols[idx]]}
-                </td>
-              ))}
-            </tr>
-            // <tr key={row.id}>
-            //   {Object.entries(row).map(([k, v], idx) => (
-
-            //     <td key={v} dragOver={cols[idx] === dragOver}>
-            //       {row[cols[idx]]}
-            //     </td>
-            //   ))}
-            // </tr>
-          ))}
+          {rows.map((row, i) => {
+            console.log(row);
+            return (
+              <tr key={i} className="table-row">
+                {Object.entries(row).map((value, idx) => (
+                  <td key={uid(value)} dragOver={cols[idx]}>
+                    {console.log(cols[idx])}
+                    {row[cols[idx].key]}
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
