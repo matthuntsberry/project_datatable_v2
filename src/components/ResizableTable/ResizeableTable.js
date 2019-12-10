@@ -1,9 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
-import styled from "styled-components";
 import { uid } from "react-uid";
-import db from "../../db/db";
+import classNames from "classnames";
 
-const ResizeableTable = ({ headers, rows: data }) => {
+const ResizeableTable = ({ headers, rows: data, stickyColumn, scrollable }) => {
   const [cols, setCols] = useState(headers);
   const [rows, setRows] = useState(data);
   const [dragOver, setDragOver] = useState("");
@@ -37,24 +36,50 @@ const ResizeableTable = ({ headers, rows: data }) => {
     setDragOver("");
   };
 
+  //  Dynamic Styles based on props
+  const tableStyles = classNames({
+    "table--scroll-x": scrollable,
+    "table--sticky-scroll": scrollable && stickyColumn
+  });
+
+  const headerStyles = classNames({
+    "table__header--sticky-column": stickyColumn
+  });
+
   return (
-    <div className="App">
+    <div className={tableStyles}>
       <table className="bx--data-table">
         <thead>
           <tr>
-            {cols.map(({ key, header }) => (
-              <th
-                id={key}
-                key={uid(key)}
-                draggable
-                onDragStart={handleDragStart}
-                onDragOver={handleDragOver}
-                onDrop={handleOnDrop}
-                onDragEnter={handleDragEnter}
-                dragOver={key === dragOver}
-              >
-                <span
-                  role="heading"
+            {cols.map(({ key, header }, index) => {
+              return index === 0 ? (
+                <th
+                  role="columnheader"
+                  scope="col"
+                  className={headerStyles}
+                  id={key}
+                  key={uid(key)}
+                >
+                  <span
+                    role="heading"
+                    id={key}
+                    key={uid(key)}
+                    draggable
+                    onDragStart={handleDragStart}
+                    onDragOver={handleDragOver}
+                    onDrop={handleOnDrop}
+                    onDragEnter={handleDragEnter}
+                    dragOver={key === dragOver}
+                    className="bx--table-header-label"
+                  >
+                    {header}
+                  </span>
+                </th>
+              ) : (
+                <th
+                  role="columnheader"
+                  scope="col"
+                  className={headerStyles}
                   id={key}
                   key={uid(key)}
                   draggable
@@ -63,24 +88,52 @@ const ResizeableTable = ({ headers, rows: data }) => {
                   onDrop={handleOnDrop}
                   onDragEnter={handleDragEnter}
                   dragOver={key === dragOver}
-                  className="bx--table-header-label"
                 >
-                  {header}
-                </span>
-              </th>
-            ))}
+                  <span
+                    role="heading"
+                    id={key}
+                    key={uid(key)}
+                    draggable
+                    onDragStart={handleDragStart}
+                    onDragOver={handleDragOver}
+                    onDrop={handleOnDrop}
+                    onDragEnter={handleDragEnter}
+                    dragOver={key === dragOver}
+                    className="bx--table-header-label"
+                  >
+                    {header}
+                  </span>
+                </th>
+              );
+            })}
           </tr>
         </thead>
         <tbody>
           {rows.map((row, i) => {
-            console.log(row);
             return (
               <tr key={i} className="table-row">
                 {Object.entries(row).map((value, idx) => (
-                  <td key={uid(value)} dragOver={cols[idx]}>
-                    {console.log(cols[idx])}
-                    {row[cols[idx].key]}
-                  </td>
+                  <>
+                    {idx === 0 ? (
+                      <th
+                        key={uid(value)}
+                        role="rowheader"
+                        className={stickyColumn && "table__row--sticky-column"}
+                        dragOver={cols[idx]}
+                      >
+                        {row[cols[idx].key]}
+                      </th>
+                    ) : (
+                      <td
+                        key={uid(value)}
+                        role="cell"
+                        className="table-cell"
+                        dragOver={cols[idx]}
+                      >
+                        {row[cols[idx].key]}
+                      </td>
+                    )}
+                  </>
                 ))}
               </tr>
             );
@@ -90,32 +143,5 @@ const ResizeableTable = ({ headers, rows: data }) => {
     </div>
   );
 };
-
-// const Cell = styled.td`
-//   font-size: 14px;
-//   text-align: left;
-//   text-transform: capitalize;
-//   vertical-align: center;
-//   padding: 20px;
-//   color: black;
-//   border-bottom: 2px solid #eef0f5;
-//   text-transform: lowercase;
-//   border-left: ${({ dragOver }) => dragOver && "5px solid red"};
-// `;
-
-// const StyledTh = styled.th`
-//   white-space: nowrap;
-//   color: #716f88;
-//   letter-spacing: 1.5px;
-//   font-weight: 600;
-//   font-size: 14px;
-//   text-align: left;
-//   text-transform: capitalize;
-//   vertical-align: middle;
-//   padding: 20px;
-//   border-bottom: 2px solid #eef0f5;
-//   text-transform: uppercase;
-//   border-left: ${({ dragOver }) => dragOver && "5px solid red"};
-// `;
 
 export default ResizeableTable;
