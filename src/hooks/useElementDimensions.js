@@ -9,12 +9,12 @@ function getElementDimensions(element) {
   }
 }
 
-function useElementDimensions(elementRef, listener) {
+function useElementDimensions(elementRef, listeners) {
   const [elementDimensions, setElementDimensions] = useState({});
 
   useLayoutEffect(() => {
     setElementDimensions(getElementDimensions(elementRef));
-  }, [listener]);
+  }, listeners);
 
   return elementDimensions;
 }

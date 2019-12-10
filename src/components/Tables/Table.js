@@ -126,8 +126,8 @@ const Table = ({ rows, headers, scrollable, stickyColumn }) => {
 
   return (
     <div
-      className="component__container--table"
       ref={componentContainerTableRef}
+      className="component__container--table"
     >
       <div
         className={
