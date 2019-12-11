@@ -1,12 +1,12 @@
 import React from "react";
-import { Button } from "carbon-components-react";
-import { OverflowMenuVertical16 } from "@carbon/icons-react";
+import { OverflowMenu, OverflowMenuItem } from "carbon-components-react";
 
 const ActionButton = () => {
   return (
-    <Button kind="ghost">
-      <OverflowMenuVertical16 />
-    </Button>
+    <OverflowMenu>
+      <OverflowMenuItem itemText="Option 1" primaryFocus />
+      <OverflowMenuItem itemText="Option 2" />
+    </OverflowMenu>
   );
 };
 
