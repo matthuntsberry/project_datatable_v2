@@ -20,9 +20,7 @@ const ResizeableTable = () => {
   function createDiv(height) {
     let div = document.createElement("div");
     div.classList.add("column-resize");
-
     div.style.height = height + "px";
-
     return div;
   }
 
@@ -34,7 +32,7 @@ const ResizeableTable = () => {
       nextCol = currentCol.nexElementSibling;
       pageX = e.pageX;
 
-      var padding = paddingDiff(currentCol);
+      let padding = paddingDiff(currentCol);
 
       currentColWidth = currentCol.offsetWidth - padding;
       if (nextCol) {
@@ -67,8 +65,8 @@ const ResizeableTable = () => {
       return 0;
     }
 
-    var padLeft = getStyleVal(col, "padding-left");
-    var padRight = getStyleVal(col, "padding-right");
+    let padLeft = getStyleVal(col, "padding-left");
+    let padRight = getStyleVal(col, "padding-right");
     return parseInt(padLeft) + parseInt(padRight);
   }
 
@@ -107,71 +105,45 @@ const ResizeableTable = () => {
       <tbody>
         <tr>
           <td>Load Balancer 1</td>
-
           <td>HTTP</td>
-
           <td>80</td>
-
           <td>Round Robin</td>
-
           <td>Maureen&#x27;s VM Groups Testing a really long text here</td>
-
           <td>Active</td>
         </tr>
 
         <tr>
           <td>Load Balancer 5</td>
-
           <td>HTTP</td>
-
           <td>80</td>
-
           <td>Round Robin</td>
-
           <td>Maureen&#x27;s VM Groups</td>
-
           <td>Active</td>
         </tr>
 
         <tr>
           <td>Load Balancer 5</td>
-
           <td>HTTP</td>
-
           <td>80</td>
-
           <td>Round Robin</td>
-
           <td>Maureen&#x27;s VM Groups</td>
-
           <td>Active</td>
         </tr>
 
         <tr>
           <td>Load Balancer 5</td>
-
-          <td>HTTP</td>
-
           <td>80</td>
-
           <td>Round Robin</td>
-
           <td>Maureen&#x27;s VM Groups</td>
-
           <td>Active</td>
         </tr>
 
         <tr>
           <td>Load Balancer 5</td>
-
           <td>HTTP</td>
-
           <td>80</td>
-
           <td>Round Robin</td>
-
           <td>Maureen&#x27;s VM Groups</td>
-
           <td>Active</td>
         </tr>
       </tbody>
