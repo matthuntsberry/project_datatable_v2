@@ -11,7 +11,6 @@ function getElementDimensions(element) {
 
 function useElementDimensions(elementRef, listeners) {
   const [elementDimensions, setElementDimensions] = useState({});
-  console.log(listeners);
 
   useLayoutEffect(() => {
     setElementDimensions(getElementDimensions(elementRef));

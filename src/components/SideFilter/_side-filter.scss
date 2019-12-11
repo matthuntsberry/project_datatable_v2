@@ -30,17 +30,8 @@
   position: relative;
   grid-template-rows: 1fr 200px 1fr;
   width: 224px;
-  min-height: 100%;
+  height: 100%;
   transition: transform 0.2s;
-}
-
-.height--medium {
-  grid-template-rows: 50px 1fr 50px;
-  align-items: space-between;
-}
-
-.height--large {
-  grid-template-rows: 50px 496px 50px;
 }
 
 .side-filter--from-right .side-filter__container {
@@ -63,11 +54,6 @@
   border-right: 1px solid #dcdcdc;
 }
 
-.side-filter__form-container {
-  // align-content: space-around;
-  overflow: scroll;
-}
-
 .multiselect__container {
   padding: 0 16px;
   padding-bottom: 0;
@@ -75,12 +61,9 @@
 
 .side-filter__heading-container {
   display: flex;
-  position: sticky;
   z-index: 3;
   top: 0;
   justify-content: space-between;
-  height: 24px;
-  padding: 16px;
   padding-bottom: 0;
 }
 

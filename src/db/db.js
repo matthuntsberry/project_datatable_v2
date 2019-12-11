@@ -5,14 +5,14 @@ import { makeAnIP, randomNumberGenerator } from "../helpers/ipGenerator";
 import randomDate from "../helpers/dateGenerator";
 
 const headers = [
+  // {
+  //   key: "id",
+  //   header: "ID"
+  // },
   {
     key: "name",
     header: "Name"
   },
-  // {
-  //   key: "label",
-  //   header: ""
-  // },
   {
     key: "type",
     header: "Type"
@@ -35,9 +35,19 @@ const headers = [
   },
   {
     key: "action",
-    header: ""
+    header: " "
   }
 ];
+
+// const headers = [
+//   "name",
+//   "type",
+//   "location",
+//   "publicIp",
+//   "privateIp",
+//   "startDate",
+//   "action"
+// ];
 
 const rows = [
   {
@@ -49,7 +59,6 @@ const rows = [
     publicIp: makeAnIP(randomNumberGenerator),
     privateIp: makeAnIP(randomNumberGenerator),
     startDate: randomDate(new Date(2017, 0, 1), new Date()),
-
     action: <ActionButton />
   },
   {
