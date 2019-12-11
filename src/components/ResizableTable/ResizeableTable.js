@@ -3,7 +3,9 @@ import classNames from "classnames";
 import { uid } from "react-uid";
 import { Pagination } from "carbon-components-react";
 
-// my imports
+//------------------
+// 1st Party Imports
+//------------------
 import {
   useElementDimensions,
   getElementDimensions
@@ -12,6 +14,9 @@ import { useWindowDimensions } from "../../hooks/useWindowDimensions";
 import { PaginationContext } from "../../context";
 
 const ResizeableTable = ({ headers, rows, stickyColumn, scrollable }) => {
+  //---------
+  // Contexts
+  //---------
   const {
     totalItems,
     currentPageSize,
@@ -19,23 +24,26 @@ const ResizeableTable = ({ headers, rows, stickyColumn, scrollable }) => {
     setFirstRowIndex
   } = useContext(PaginationContext);
 
+  //------
   // State
+  //------
   const [cols, setCols] = useState(headers);
-
-  // const [rows, setRows] = useState(data);
-  // console.log(data);
-  // console.log(rows);
   const [dragOver, setDragOver] = useState("");
-
   const [updatedElementDimensions, updateElementDimensions] = useState({});
   const [toggleStickyPagination, setToggleStickyPagination] = useState(false);
   const [toggleStickyHeader, setToggleStickyHeader] = useState(false);
 
-  // Ref - Used to target which DOM element we want to reference / Keep track
+  //-----
+  // Refs
+  //
+  // used to target which DOM element we want to reference / Keep track
+  //-----
   const componentContainerTableRef = useRef();
   const tableRef = useRef();
 
+  //------
   // Hooks
+  //------
   const { height: windowHeight } = useWindowDimensions();
   const { height: elementHeight } = useElementDimensions(
     componentContainerTableRef,
@@ -51,8 +59,6 @@ const ResizeableTable = ({ headers, rows, stickyColumn, scrollable }) => {
       // else ref is undefined
       getElementDimensions(componentContainerTableRef);
 
-      console.log("elementHeight:", elementHeight);
-      console.log("windowHeight:", windowHeight);
       // subtract the height of the pageheader (242)
       if (windowHeight - 242 < elementHeight) {
         tableRef.current.setAttribute(
@@ -61,10 +67,8 @@ const ResizeableTable = ({ headers, rows, stickyColumn, scrollable }) => {
         );
         setToggleStickyPagination(true);
         setToggleStickyHeader(true);
-        console.log(toggleStickyHeader);
       } else {
         setToggleStickyPagination(false);
-        console.log(toggleStickyHeader);
         tableRef.current.removeAttribute("style");
         setToggleStickyHeader(false);
       }
@@ -73,6 +77,9 @@ const ResizeableTable = ({ headers, rows, stickyColumn, scrollable }) => {
     [windowHeight, elementHeight, toggleStickyPagination, toggleStickyHeader]
   );
 
+  //---------
+  // Handlers
+  //---------
   const handleDragStart = e => {
     const { id } = e.target;
 
@@ -89,11 +96,8 @@ const ResizeableTable = ({ headers, rows, stickyColumn, scrollable }) => {
 
   const handleOnDrop = e => {
     const { id } = e.target;
-
     const droppedColIdx = cols.findIndex(i => i.key === id);
-
     const draggedColIdx = e.dataTransfer.getData("colIdx");
-    // console.log(e.dataTransfer.getData("colIdx"));
     const tempCols = [...cols];
 
     tempCols[draggedColIdx] = cols[droppedColIdx];
@@ -102,7 +106,9 @@ const ResizeableTable = ({ headers, rows, stickyColumn, scrollable }) => {
     setDragOver("");
   };
 
-  //  Dynamic Styles based on props
+  //---------------
+  // Dynamic Styles
+  //---------------
   const tableStyles = classNames({
     "table--scroll-x": scrollable,
     "table--sticky-scroll": scrollable && stickyColumn
@@ -122,13 +128,10 @@ const ResizeableTable = ({ headers, rows, stickyColumn, scrollable }) => {
       ref={componentContainerTableRef}
     >
       <div className="table__container">
-        <div className={tableStyles}>
-          <table
-            className="bx--data-table bx--data-table--no-border"
-            ref={tableRef}
-          >
+        <div className={tableStyles} ref={tableRef}>
+          <table className="bx--data-table bx--data-table--no-border">
             <thead>
-              <tr>
+              <tr className="table__header">
                 {cols.map(({ key, header }, index) => {
                   return index === 0 ? (
                     <th

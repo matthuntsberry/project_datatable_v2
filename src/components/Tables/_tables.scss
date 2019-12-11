@@ -15,6 +15,14 @@
   overflow-y: scroll;
 }
 
+tr.table__header > th:last-child,
+tr.table__header > th {
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 2;
+  top: 0;
+}
+
 .table--sticky-pagination {
   position: sticky;
   // position: -webkit-sticky;
