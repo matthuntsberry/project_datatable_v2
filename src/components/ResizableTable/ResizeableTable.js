@@ -11,7 +11,7 @@ import {
 import { useWindowDimensions } from "../../hooks/useWindowDimensions";
 import { PaginationContext } from "../../context";
 
-const ResizeableTable = ({ headers, rows: data, stickyColumn, scrollable }) => {
+const ResizeableTable = ({ headers, rows, stickyColumn, scrollable }) => {
   const {
     totalItems,
     currentPageSize,
@@ -20,6 +20,13 @@ const ResizeableTable = ({ headers, rows: data, stickyColumn, scrollable }) => {
   } = useContext(PaginationContext);
 
   // State
+  const [cols, setCols] = useState(headers);
+
+  // const [rows, setRows] = useState(data);
+  // console.log(data);
+  // console.log(rows);
+  const [dragOver, setDragOver] = useState("");
+
   const [updatedElementDimensions, updateElementDimensions] = useState({});
   const [toggleStickyPagination, setToggleStickyPagination] = useState(false);
   const [toggleStickyHeader, setToggleStickyHeader] = useState(false);
@@ -65,10 +72,6 @@ const ResizeableTable = ({ headers, rows: data, stickyColumn, scrollable }) => {
     // only rerender if one these variables updates
     [windowHeight, elementHeight, toggleStickyPagination, toggleStickyHeader]
   );
-
-  const [cols, setCols] = useState(headers);
-  const [rows, setRows] = useState(data);
-  const [dragOver, setDragOver] = useState("");
 
   const handleDragStart = e => {
     const { id } = e.target;
@@ -187,31 +190,33 @@ const ResizeableTable = ({ headers, rows: data, stickyColumn, scrollable }) => {
               {rows.map((row, i) => {
                 return (
                   <tr key={i} className="table-row">
-                    {Object.entries(row).map((value, idx) => (
-                      <>
-                        {idx === 0 ? (
-                          <th
-                            key={uid(value)}
-                            role="rowheader"
-                            className={
-                              stickyColumn && "table__row--sticky-column"
-                            }
-                            dragOver={cols[idx]}
-                          >
-                            {row[cols[idx].key]}
-                          </th>
-                        ) : (
-                          <td
-                            key={uid(value)}
-                            role="cell"
-                            className="table-cell"
-                            dragOver={cols[idx]}
-                          >
-                            {row[cols[idx].key]}
-                          </td>
-                        )}
-                      </>
-                    ))}
+                    {Object.entries(row)
+                      .slice(1)
+                      .map((value, idx) => (
+                        <>
+                          {idx === 0 ? (
+                            <th
+                              key={uid(value)}
+                              role="rowheader"
+                              className={
+                                stickyColumn && "table__row--sticky-column"
+                              }
+                              dragOver={cols[idx]}
+                            >
+                              {row[cols[idx].key]}
+                            </th>
+                          ) : (
+                            <td
+                              key={uid(value)}
+                              role="cell"
+                              className="table-cell"
+                              dragOver={cols[idx]}
+                            >
+                              {row[cols[idx].key]}
+                            </td>
+                          )}
+                        </>
+                      ))}
                   </tr>
                 );
               })}
